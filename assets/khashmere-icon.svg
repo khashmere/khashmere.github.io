@@ -1,0 +1,18 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Connecting curves -->
+  <path d="M12 4 Q18 12, 24 8" stroke="#d4af82" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M24 8 Q30 18, 20 24" stroke="#d4af82" stroke-width="1" fill="none" opacity="0.2"/>
+  <path d="M12 4 Q8 16, 20 24" stroke="#d4af82" stroke-width="1" fill="none" opacity="0.25"/>
+  <!-- Nodes -->
+  <circle cx="12" cy="4" r="3" fill="#d4af82"/>
+  <circle cx="24" cy="8" r="2" fill="#d4af82" opacity="0.7"/>
+  <circle cx="20" cy="24" r="2.5" fill="#d4af82" opacity="0.8"/>
+  <!-- Central glow -->
+  <circle cx="18" cy="12" r="8" fill="url(#glow)" opacity="0.4"/>
+  <defs>
+    <radialGradient id="glow">
+      <stop offset="0%" stop-color="#d4af82"/>
+      <stop offset="100%" stop-color="#d4af82" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
