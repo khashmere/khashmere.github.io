@@ -1,0 +1,268 @@
+:root {
+  --soft-navy: #3d4f61;
+  --deep-navy: #1f2d3a;
+  --slate: #2a3a4a;
+  --warm-cream: #f0ece8;
+  --warm-gold: #d4af82;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
+  color: var(--warm-cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Navigation */
+.hero-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  color: var(--warm-cream);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+/* Main Content */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  position: relative;
+}
+
+/* Hero Content - Centered on top */
+.hero-content {
+  text-align: center;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+.tagline {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 24px;
+}
+
+.headline {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid rgba(240, 236, 232, 0.25);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--warm-cream);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: rgba(240, 236, 232, 0.05);
+  border-color: rgba(240, 236, 232, 0.4);
+}
+
+/* Constellation - Large centered background */
+.constellation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.constellation svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Core glow breathing animation */
+.core-glow {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Node pulse animations with staggered delays */
+.node {
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.node-1 {
+  animation-delay: 0s;
+}
+
+.node-2 {
+  animation-delay: 0.8s;
+}
+
+.node-3 {
+  animation-delay: 1.6s;
+}
+
+.node-4 {
+  animation-delay: 2.4s;
+}
+
+.node-5 {
+  animation-delay: 3.2s;
+}
+
+.node-6 {
+  animation-delay: 4s;
+}
+
+.node-center {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Footer Navigation */
+.footer-nav {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 32px;
+  z-index: 10;
+}
+
+.footer-nav a {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  color: var(--warm-cream);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-nav {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .hero-content {
+    padding: 40px 24px;
+    max-width: 100%;
+  }
+
+  .headline {
+    font-size: 26px;
+  }
+
+  .constellation {
+    width: 400px;
+    height: 400px;
+  }
+
+  .footer-nav {
+    position: static;
+    transform: none;
+    padding: 40px 24px;
+    justify-content: center;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .core-glow,
+  .node {
+    animation: none;
+  }
+
+  .cta,
+  .nav-links a,
+  .footer-nav a {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+a:focus-visible {
+  outline: 2px solid var(--warm-gold);
+  outline-offset: 4px;
+}

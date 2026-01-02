@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khashmere - Human-first Data Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="hero-nav" role="navigation" aria-label="Main navigation">
+    <div class="logo">KHASHMERE</div>
+    <div class="nav-links">
+      <a href="#pricing">PRICING</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="constellation" role="img" aria-label="Thread constellation visualization">
+      <svg viewBox="0 0 450 450" xmlns="http://www.w3.org/2000/svg">
+        <!-- Core glow -->
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%">
+            <stop offset="0%" style="stop-color: #d4af82; stop-opacity: 0.3;" />
+            <stop offset="50%" style="stop-color: #d4af82; stop-opacity: 0.1;" />
+            <stop offset="100%" style="stop-color: #d4af82; stop-opacity: 0;" />
+          </radialGradient>
+        </defs>
+
+        <circle class="core-glow" cx="225" cy="225" r="80" fill="url(#coreGlow)" />
+
+        <!-- Curved connecting lines -->
+        <path class="connection-line" d="M 225 225 Q 280 180, 320 160" stroke="rgba(240, 236, 232, 0.1)" stroke-width="1" fill="none" />
+        <path class="connection-line" d="M 225 225 Q 300 220, 350 210" stroke="rgba(240, 236, 232, 0.12)" stroke-width="1" fill="none" />
+        <path class="connection-line" d="M 225 225 Q 280 270, 330 300" stroke="rgba(240, 236, 232, 0.08)" stroke-width="1" fill="none" />
+        <path class="connection-line" d="M 225 225 Q 180 280, 150 320" stroke="rgba(240, 236, 232, 0.1)" stroke-width="1" fill="none" />
+        <path class="connection-line" d="M 225 225 Q 170 190, 130 170" stroke="rgba(240, 236, 232, 0.15)" stroke-width="1" fill="none" />
+        <path class="connection-line" d="M 225 225 Q 200 150, 180 120" stroke="rgba(240, 236, 232, 0.09)" stroke-width="1" fill="none" />
+
+        <!-- Central node -->
+        <circle class="node node-center" cx="225" cy="225" r="5" fill="#d4af82" />
+
+        <!-- Outer nodes -->
+        <circle class="node node-1" cx="320" cy="160" r="4" fill="#f0ece8" />
+        <circle class="node node-2" cx="350" cy="210" r="3" fill="#d4af82" />
+        <circle class="node node-3" cx="330" cy="300" r="4" fill="#f0ece8" />
+        <circle class="node node-4" cx="150" cy="320" r="3" fill="#d4af82" />
+        <circle class="node node-5" cx="130" cy="170" r="4" fill="#f0ece8" />
+        <circle class="node node-6" cx="180" cy="120" r="3" fill="#d4af82" />
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <p class="tagline">Data Analytics Platform</p>
+      <h1 class="headline">
+        <em>Human-first</em> data platform.<br/>Comfortable expertise.
+      </h1>
+      <a href="#pricing" class="cta">See Pricing</a>
+    </div>
+  </main>
+</body>
+</html>
