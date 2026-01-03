@@ -40,20 +40,55 @@ Sound like an expert who solves the right problem, not just the obvious one. Pla
 /* Primary palette */
 --soft-navy: #3d4f61;   /* Primary background */
 --deep-navy: #1f2d3a;   /* Gradients, depth */
+--slate: #2a3a4a;       /* Gradient mid-point */
 --warm-cream: #f0ece8;  /* Text on dark */
 --warm-gold: #d4af82;   /* Accents, highlights */
+
+/* Background gradient */
+background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
 ```
 
 ### Typography
 
 **Font:** DM Sans (400, 500)
 
-- Logo: 16px / 500 / letter-spacing: 2px
-- H1: 28-32px / 400
-- Body: 15-16px / 400
-- Small: 12-13px / 400
+```css
+/* Logo */
+.logo: 16px, weight 500, letter-spacing 3px
+
+/* Navigation */
+.nav-links: 13px, letter-spacing 2px, uppercase, opacity 0.5
+
+/* Tagline */
+.tagline: 13px, letter-spacing 2px, uppercase, opacity 0.4
+
+/* Headline */
+.headline: 28px, weight 400, line-height 1.5
+.headline em: italic, var(--warm-gold)
+
+/* CTA Button */
+.cta: 12px, padding 12px 28px, border 1px solid rgba(240,236,232,0.25), letter-spacing 1px
+```
 
 Use *italics* for emphasis. Use warm gold for key words. Avoid bold.
+
+### Animations
+
+Slow, calming animations (5-8s cycles):
+
+```css
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+```
+
+Stagger node delays for organic feel.
 
 ### Logo
 
