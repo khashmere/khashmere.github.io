@@ -1,5 +1,5 @@
 ---
-name: kashmere-brand
+name: khashmere-brand
 description: Brand guidelines for Khashmere. Apply to proposals, presentations, and documents. Focuses on brand values, voice, and visual identity.
 ---
 
