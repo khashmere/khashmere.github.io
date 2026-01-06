@@ -465,6 +465,15 @@ a:focus-visible {
   text-transform: uppercase;
   opacity: 0.6;
   color: var(--warm-cream);
+  margin-bottom: 12px;
+}
+
+.team-bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--warm-cream);
+  opacity: 0.7;
+  max-width: 280px;
 }
 
 @media (max-width: 768px) {
