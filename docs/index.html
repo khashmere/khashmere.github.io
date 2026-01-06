@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khashmere - Human-first Data Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/khashmere-icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="logo">
+      <img src="../assets/khashmere-icon.svg" alt="" class="logo-icon">
+      <span>KHASHMERE</span>
+    </a>
+    <div class="nav-links">
+      <a href="pricing.html">PRICING</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </nav>
+
+  <main class="landing-container">
+    <!-- Left side: Hero content + Login -->
+    <div class="landing-left">
+      <div class="hero-content">
+        <h1 class="headline">
+          Premium data platform<br/><em>*Humans included</em>
+        </h1>
+
+        <div class="hero-login">
+          <a href="https://app.fabric.microsoft.com/" class="login-btn" target="_blank" rel="noopener noreferrer">
+            <svg class="microsoft-icon" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+              <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+              <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+              <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+            </svg>
+            Continue with Microsoft Fabric
+          </a>
+
+          <div class="hero-login-divider">
+            <span>or</span>
+          </div>
+
+          <a href="pricing.html" class="cta">See Pricing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: Brand visual with constellation -->
+    <div class="landing-right">
+      <div class="landing-brand-visual">
+        <svg class="brand-logo-large" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Khashmere brand visual">
+          <!-- Connecting curves - scaled up -->
+          <path d="M60 20 Q90 60, 120 40" stroke="#d4af82" stroke-width="2" fill="none" opacity="0.4"/>
+          <path d="M120 40 Q150 90, 100 120" stroke="#d4af82" stroke-width="2" fill="none" opacity="0.3"/>
+          <path d="M60 20 Q40 80, 100 120" stroke="#d4af82" stroke-width="2" fill="none" opacity="0.35"/>
+          <path d="M100 120 Q130 150, 140 180" stroke="#d4af82" stroke-width="1.5" fill="none" opacity="0.25"/>
+          <path d="M100 120 Q60 150, 50 170" stroke="#d4af82" stroke-width="1.5" fill="none" opacity="0.2"/>
+          <!-- Nodes - scaled up -->
+          <circle cx="60" cy="20" r="12" fill="#d4af82" class="node node-1"/>
+          <circle cx="120" cy="40" r="8" fill="#d4af82" opacity="0.7" class="node node-2"/>
+          <circle cx="100" cy="120" r="10" fill="#d4af82" opacity="0.9" class="node node-3"/>
+          <circle cx="140" cy="180" r="6" fill="#d4af82" opacity="0.5" class="node node-4"/>
+          <circle cx="50" cy="170" r="5" fill="#d4af82" opacity="0.4" class="node node-5"/>
+          <!-- Central glow -->
+          <circle cx="90" cy="70" r="50" fill="url(#landingGlow)" opacity="0.3" class="core-glow"/>
+          <defs>
+            <radialGradient id="landingGlow">
+              <stop offset="0%" stop-color="#d4af82"/>
+              <stop offset="100%" stop-color="#d4af82" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
