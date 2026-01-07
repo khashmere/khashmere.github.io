@@ -300,14 +300,7 @@ body {
   }
 
   .landing-right {
-    min-height: 200px;
-    order: 0;
-    flex: 0;
-  }
-
-  .brand-logo-large {
-    width: 200px;
-    height: 200px;
+    display: none;
   }
 }
 
@@ -333,15 +326,6 @@ body {
 @media (max-width: 480px) {
   .nav {
     padding: 16px;
-  }
-
-  .landing-right {
-    min-height: 150px;
-  }
-
-  .brand-logo-large {
-    width: 150px;
-    height: 150px;
   }
 
   .landing-left {
