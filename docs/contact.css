@@ -89,7 +89,7 @@
 }
 
 .contact-card-body {
-  padding-left: 34px;
+  padding-left: 0px;
 }
 
 .contact-value {
@@ -218,6 +218,7 @@
 
   .contact-card {
     padding: 16px 20px;
+    text-align: center;
   }
 
   .contact-card-body {
@@ -226,11 +227,13 @@
 
   .contact-card-header {
     margin-bottom: 8px;
+    justify-content: center;
   }
 
   .email-address-row {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
   }
 
@@ -238,8 +241,16 @@
     font-size: 16px;
   }
 
+  .email-providers {
+    justify-content: center;
+  }
+
   .contact-value {
     font-size: 16px;
+  }
+
+  .contact-hint {
+    display: block;
   }
 }
 
