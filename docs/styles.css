@@ -476,8 +476,19 @@ a:focus-visible {
     gap: 40px;
   }
 
+  .team-card {
+    text-align: center;
+  }
+
   .team-photo-container {
     width: 240px;
     height: 240px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .team-bio {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
