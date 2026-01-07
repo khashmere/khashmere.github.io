@@ -205,7 +205,12 @@
 
 @media (max-width: 768px) {
   .contact-container {
-    padding: 40px 24px;
+    padding: 40px 20px;
+    align-items: flex-start;
+  }
+
+  .contact-content {
+    max-width: 100%;
   }
 
   .contact-headline {
