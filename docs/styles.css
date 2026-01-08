@@ -15,6 +15,7 @@
 html {
   background: #3d4f61;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -393,6 +394,7 @@ a:focus-visible {
 .what-we-do-section {
   padding: 120px 40px;
   background: var(--slate);
+  scroll-margin-top: 40px;
 }
 
 .what-we-do-header {
