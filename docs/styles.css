@@ -274,14 +274,6 @@ body {
   animation-delay: 3.2s;
 }
 
-.node-6 {
-  animation-delay: 4s;
-}
-
-.node-center {
-  animation-delay: 0.4s;
-}
-
 @keyframes pulse {
   0%, 100% {
     opacity: 0.4;
@@ -640,7 +632,7 @@ a:focus-visible {
 }
 
 /* ==================== */
-/* Team Section - Option A: Warm Cream + Gold Threads */
+/* Team Section          */
 /* ==================== */
 
 .team-section {
@@ -682,7 +674,6 @@ a:focus-visible {
   overflow: hidden;
 }
 
-/* Option A: Warm Cream background */
 .team-photo-bg {
   position: absolute;
   inset: 0;
@@ -763,5 +754,69 @@ a:focus-visible {
   .team-bio {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+/* ==================== */
+/* Pricing Section (Landing Page) */
+/* ==================== */
+
+.pricing-section {
+  padding: 120px 40px;
+  background: var(--soft-navy);
+}
+
+.pricing-section .pricing-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-headline {
+  font-size: 42px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--warm-cream);
+}
+
+.pricing-headline em {
+  font-style: italic;
+  color: var(--warm-gold);
+}
+
+.pricing-intro {
+  font-size: 16px;
+  text-align: center;
+  color: var(--warm-cream);
+  opacity: 0.7;
+  margin-bottom: 64px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive - Pricing Section */
+@media (max-width: 900px) {
+  .pricing-section {
+    padding: 80px 24px;
+  }
+
+  .pricing-headline {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-section {
+    padding: 64px 16px;
+  }
+
+  .pricing-headline {
+    font-size: 28px;
+  }
+
+  .pricing-intro {
+    font-size: 14px;
+    margin-bottom: 48px;
   }
 }
