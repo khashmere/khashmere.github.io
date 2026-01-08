@@ -37,6 +37,12 @@
   color: var(--warm-cream);
 }
 
+.contact-intro em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
 /* Contact Methods */
 .contact-methods {
   display: flex;
