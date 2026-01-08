@@ -68,6 +68,11 @@ background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
 
 /* CTA Button */
 .cta: 12px, padding 12px 28px, border 1px solid rgba(240,236,232,0.25), letter-spacing 1px
+
+/* Section Headlines */
+.section-headline: 42px, weight 400, line-height 1.5
+.section-headline em: italic, var(--warm-gold)
+/* Responsive (under 900px): 32px, text-align center */
 ```
 
 Use *italics* for emphasis. Use warm gold for key words. Avoid bold.
