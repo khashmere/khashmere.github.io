@@ -382,6 +382,264 @@ a:focus-visible {
 }
 
 /* ==================== */
+/* What We Do Section   */
+/* ==================== */
+
+.what-we-do-section {
+  padding: 120px 40px;
+  background: var(--slate);
+}
+
+.what-we-do-container {
+  display: flex;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.capabilities-list {
+  flex: 0 0 320px;
+}
+
+.section-headline {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 48px;
+  color: var(--warm-cream);
+}
+
+.section-headline em {
+  font-style: italic;
+  color: var(--warm-gold);
+}
+
+.capability-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.capability-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+  font-family: "DM Sans", sans-serif;
+  color: var(--warm-cream);
+  opacity: 0.5;
+  position: relative;
+}
+
+.capability-item:hover {
+  opacity: 0.8;
+  background: rgba(240, 236, 232, 0.03);
+}
+
+.capability-item.active {
+  opacity: 1;
+  background: rgba(240, 236, 232, 0.05);
+  border-color: rgba(212, 175, 130, 0.3);
+}
+
+.capability-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--warm-cream);
+  transition: color 0.3s ease;
+}
+
+.capability-item.active .capability-icon {
+  color: var(--warm-gold);
+}
+
+.capability-label {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+.capability-line {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--warm-gold);
+  transition: width 0.3s ease;
+}
+
+.capability-item.active .capability-line {
+  width: 40px;
+}
+
+/* Detail Panel - Right Side */
+.capability-detail-wrapper {
+  flex: 1;
+  position: relative;
+  align-self: stretch;
+}
+
+.capability-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.capability-detail.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  position: relative;
+  height: 100%;
+}
+
+.detail-split {
+  display: flex;
+  gap: 0;
+  background: rgba(31, 45, 58, 0.6);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(240, 236, 232, 0.08);
+  height: 100%;
+}
+
+.detail-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(42, 58, 74, 0.8) 0%, rgba(31, 45, 58, 0.8) 100%);
+  padding: 40px;
+}
+
+.detail-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed rgba(240, 236, 232, 0.1);
+  border-radius: 12px;
+  color: var(--warm-cream);
+}
+
+.placeholder-icon {
+  width: 80px;
+  height: 80px;
+  opacity: 0.4;
+}
+
+.detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 40px;
+  background: rgba(240, 236, 232, 0.02);
+}
+
+.detail-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--warm-cream);
+  opacity: 0.9;
+}
+
+.detail-text em {
+  font-style: italic;
+  color: var(--warm-gold);
+}
+
+/* Responsive - What We Do */
+@media (max-width: 900px) {
+  .what-we-do-section {
+    padding: 80px 24px;
+  }
+
+  .what-we-do-container {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .capabilities-list {
+    flex: none;
+    width: 100%;
+  }
+
+  .section-headline {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .capability-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .capability-item {
+    width: auto;
+    padding: 12px 20px;
+  }
+
+  .capability-line {
+    display: none;
+  }
+
+  .capability-detail-wrapper {
+    min-height: auto;
+  }
+
+  .detail-split {
+    flex-direction: column;
+  }
+
+  .detail-visual {
+    min-height: 200px;
+    padding: 32px;
+  }
+
+  .detail-content {
+    padding: 32px 24px;
+  }
+
+  .detail-text {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .capability-items {
+    flex-direction: column;
+  }
+
+  .capability-item {
+    width: 100%;
+  }
+}
+
+/* ==================== */
 /* Team Section - Option A: Warm Cream + Gold Threads */
 /* ==================== */
 
