@@ -15,15 +15,6 @@ main {
   padding: 48px 0 64px;
 }
 
-.hero-tagline {
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--warm-cream);
-  opacity: 0.4;
-  margin-bottom: 16px;
-}
-
 .hero-headline {
   font-size: 28px;
   font-weight: 400;
