@@ -1052,34 +1052,230 @@ a:focus-visible {
 }
 
 /* ==================== */
-/* Footer - Global      */
+/* Footer V1 - Fuzzco Style */
 /* ==================== */
 
-.footer {
-  padding: 40px;
+.footer-v1 {
+  padding: 64px 40px 40px;
   background: var(--deep-navy);
   border-top: 1px solid rgba(240, 236, 232, 0.08);
 }
 
-.copyright {
-  font-size: 13px;
+.footer-v1 .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.footer-v1 .footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  min-width: 160px;
+}
+
+.footer-v1 .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 3px;
   color: var(--warm-cream);
-  opacity: 0.5;
-  text-align: left;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-v1 .footer-logo:hover {
+  opacity: 0.8;
+}
+
+.footer-v1 .footer-logo-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-v1 .footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  flex: 1;
+}
+
+.footer-v1 .footer-tagline {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--warm-cream);
+  white-space: nowrap;
+}
+
+.footer-v1 .footer-tagline em {
+  font-style: italic;
+  color: var(--warm-gold);
+}
+
+.footer-v1 .footer-contact-columns {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.footer-v1 .footer-contact-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-v1 .footer-contact-label {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--warm-cream);
+}
+
+.footer-v1 .footer-contact-item {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-v1 .footer-contact-item:hover {
+  opacity: 0.8;
+}
+
+.footer-v1 .footer-contact-item:hover .footer-contact-text {
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
+.footer-v1 .footer-contact-text {
+  font-size: 14px;
+  color: var(--warm-cream);
+  opacity: 0.7;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-v1 .footer-copy-feedback {
+  font-size: 12px;
+  color: var(--warm-gold);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 18px;
+}
+
+.footer-v1 .footer-copy-feedback.show {
+  opacity: 1;
+}
+
+.footer-v1 .footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.footer-v1 .footer-links a {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--warm-cream);
+  text-decoration: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.footer-v1 .footer-links a:hover {
+  opacity: 0.8;
+  color: var(--warm-gold);
+}
+
+.footer-v1 .copyright {
+  font-size: 12px;
+  color: var(--warm-cream);
+  opacity: 0.4;
+}
+
+@media (max-width: 900px) {
+  .footer-v1 .footer-content {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 32px;
+    align-items: flex-start;
+  }
+
+  .footer-v1 .footer-contact {
+    max-width: 100%;
+    align-items: flex-start;
+  }
+
+  .footer-v1 .footer-tagline {
+    font-size: 18px;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .footer-v1 .footer-contact-columns {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-v1 .footer-contact-col {
+    align-items: flex-start;
+  }
+
+  .footer-v1 .footer-contact-label {
+    text-align: left;
+  }
+
+  .footer-v1 .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 32px 24px;
-  }
-
-  .copyright {
-    font-size: 12px;
+  .footer-v1 {
+    padding: 48px 24px 32px;
   }
 }
 
 @media (max-width: 480px) {
-  .footer {
-    padding: 24px 16px;
+  .footer-v1 {
+    padding: 40px 16px 24px;
+  }
+
+  .footer-v1 .footer-tagline {
+    font-size: 16px;
+  }
+}
+
+/* Footer Minimal - Copyright only (contact/pricing page) */
+.footer-v1.footer-minimal {
+  padding: 32px 40px;
+  text-align: left;
+}
+
+.footer-v1.footer-minimal .copyright {
+  margin: 0;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .footer-v1.footer-minimal {
+    padding: 24px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-v1.footer-minimal {
+    padding: 20px 16px;
   }
 }

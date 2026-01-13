@@ -346,19 +346,6 @@ main {
   border-color: rgba(240, 236, 232, 0.5);
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 32px 48px;
-  border-top: 1px solid rgba(240, 236, 232, 0.15);
-}
-
-.copyright {
-  font-size: 13px;
-  color: var(--warm-cream);
-  opacity: 0.5;
-}
-
 /* Responsive Design */
 @media (max-width: 900px) {
   .pricing-cards {

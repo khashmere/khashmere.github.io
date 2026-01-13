@@ -46,3 +46,29 @@ if (capabilityItems.length > 0) {
     });
   });
 }
+
+// Footer copy to clipboard
+const copyButtons = document.querySelectorAll('.footer-contact-item[data-copy]');
+const feedbackEl = document.querySelector('.footer-copy-feedback');
+
+if (copyButtons.length > 0 && feedbackEl) {
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const textToCopy = btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        feedbackEl.textContent = `Copied "${textToCopy}" to clipboard`;
+        feedbackEl.classList.add('show');
+        setTimeout(() => {
+          feedbackEl.classList.remove('show');
+        }, 2000);
+      } catch (err) {
+        feedbackEl.textContent = 'Failed to copy';
+        feedbackEl.classList.add('show');
+        setTimeout(() => {
+          feedbackEl.classList.remove('show');
+        }, 2000);
+      }
+    });
+  });
+}
