@@ -596,6 +596,38 @@ a:focus-visible {
   transform: scale(1);
 }
 
+/* Platform Logos - Horizontal with Connector */
+.platform-logos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.platform-logo {
+  object-fit: contain;
+}
+
+.platform-logo-fabric {
+  width: 100px;
+  height: auto;
+}
+
+.platform-logo-claude {
+  width: 56px;
+  height: auto;
+  margin-left: 8px;
+}
+
+.platform-connector {
+  width: 60px;
+  height: 40px;
+}
+
+.connector-node {
+  animation: pulse 6s ease-in-out infinite;
+}
+
 .detail-content {
   flex: 1;
   display: flex;
