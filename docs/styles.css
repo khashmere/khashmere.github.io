@@ -737,6 +737,104 @@ a:focus-visible {
 }
 
 /* ==================== */
+/* Client Logo Ticker   */
+/* ==================== */
+
+.clients-section {
+  padding: 48px 0;
+  background: var(--deep-navy);
+  border-top: 1px solid rgba(240, 236, 232, 0.06);
+  border-bottom: 1px solid rgba(240, 236, 232, 0.06);
+  overflow: hidden;
+}
+
+.clients-ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.6) 8%,
+    black 20%,
+    black 80%,
+    rgba(0,0,0,0.6) 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.6) 8%,
+    black 20%,
+    black 80%,
+    rgba(0,0,0,0.6) 92%,
+    transparent 100%
+  );
+}
+
+.clients-ticker {
+  display: flex;
+  width: 100%;
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: ticker-scroll 22s linear infinite;
+  will-change: transform;
+}
+
+.client-logo-item {
+  flex: 0 0 calc(100% / 3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.client-logo {
+  height: 28px;
+  width: auto;
+  opacity: 1;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.4s ease;
+  object-fit: contain;
+}
+
+.client-logo:hover {
+  opacity: 0.8;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients-section {
+    padding: 40px 0;
+  }
+
+  .client-logo-item {
+    padding: 0 40px;
+  }
+
+  .client-logo {
+    height: 22px;
+  }
+}
+
+/* ==================== */
 /* Team Section          */
 /* ==================== */
 
