@@ -748,6 +748,22 @@ a:focus-visible {
   overflow: hidden;
 }
 
+.clients-label {
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-cream);
+  opacity: 0.5;
+  margin: 0 0 48px 0;
+}
+
+.clients-label em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--warm-gold);
+}
+
 .clients-ticker-wrapper {
   width: 100%;
   overflow: hidden;
