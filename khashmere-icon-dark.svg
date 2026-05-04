@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular dark background -->
+  <circle cx="256" cy="256" r="256" fill="#1f2d3a"/>
+  <!-- Connecting curves -->
+  <path d="M200 158 Q260 240, 320 198" stroke="#d4af82" stroke-width="2.5" fill="none" opacity="0.3"/>
+  <path d="M320 198 Q370 300, 280 358" stroke="#d4af82" stroke-width="2.5" fill="none" opacity="0.2"/>
+  <path d="M200 158 Q160 280, 280 358" stroke="#d4af82" stroke-width="2.5" fill="none" opacity="0.25"/>
+  <!-- Central glow -->
+  <circle cx="260" cy="240" r="80" fill="url(#glow-dark)" opacity="0.4"/>
+  <!-- Nodes -->
+  <circle cx="200" cy="158" r="28" fill="#d4af82"/>
+  <circle cx="320" cy="198" r="20" fill="#d4af82" opacity="0.7"/>
+  <circle cx="280" cy="358" r="24" fill="#d4af82" opacity="0.8"/>
+  <defs>
+    <radialGradient id="glow-dark">
+      <stop offset="0%" stop-color="#d4af82"/>
+      <stop offset="100%" stop-color="#d4af82" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
