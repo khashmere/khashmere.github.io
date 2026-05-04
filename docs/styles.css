@@ -121,24 +121,32 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #2a3a4a 0%, #1f2d3a 100%);
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
 }
 
 /* Hero Content */
 .hero-content {
-  text-align: center;
-  max-width: 400px;
+  text-align: left;
+  max-width: 520px;
   width: 100%;
 }
 
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-cream);
+  opacity: 0.5;
+  margin-bottom: 24px;
+}
+
 .headline {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 400;
-  line-height: 1.5;
-  margin-bottom: 40px;
+  line-height: 1.35;
+  margin-bottom: 28px;
 }
 
 .headline em {
@@ -147,63 +155,26 @@ body {
   font-weight: 400;
 }
 
-/* Hero Login Section */
-.hero-login {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-}
-
-.login-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 14px 24px;
-  background: rgba(240, 236, 232, 0.08);
-  border: 1px solid rgba(240, 236, 232, 0.2);
+.hero-sub {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--warm-cream);
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  opacity: 0.75;
+  margin-bottom: 36px;
+  max-width: 480px;
 }
 
-.login-btn:hover {
-  background: rgba(240, 236, 232, 0.12);
-  border-color: rgba(240, 236, 232, 0.35);
+.hero-sub em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+  font-weight: 400;
 }
 
-.microsoft-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.hero-login-divider {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 16px;
-  opacity: 0.4;
-}
-
-.hero-login-divider::before,
-.hero-login-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--warm-cream);
-  opacity: 0.3;
-}
-
-.hero-login-divider span {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.hero-cta {
+  width: auto;
+  display: inline-block;
 }
 
 .cta {
@@ -235,8 +206,8 @@ body {
 }
 
 .brand-logo-large {
-  width: 300px;
-  height: 300px;
+  width: 450px;
+  height: 450px;
   opacity: 0.9;
 }
 
@@ -357,10 +328,6 @@ body {
     font-size: 24px;
   }
 
-  .login-btn {
-    padding: 12px 20px;
-    font-size: 13px;
-  }
 }
 
 /* ==================== */
@@ -374,7 +341,6 @@ body {
   }
 
   .cta,
-  .login-btn,
   .nav-links a,
   .logo {
     transition: none;
