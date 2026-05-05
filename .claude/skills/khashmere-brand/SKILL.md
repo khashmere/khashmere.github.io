@@ -30,7 +30,9 @@ This is simple. These are real people I can trust.
 **Voice:**
 Sound like an expert who solves the right problem, not just the obvious one. Plain language, direct, confident. Lead with strategy, follow with execution. Acknowledge complexity then simplify it.
 
-**Don't:** Buzzwords, jargon, over-explaining, cold/robotic tone.
+**Positioning:** *Teach first, pitch never.* Most vendors sell before they explain. Khashmere leads with education — what AI is worth your time, what isn't, where to begin — then builds. Never open with a feature list.
+
+**Don't:** Buzzwords, jargon, over-explaining, cold/robotic tone. Never sound like a vendor spec sheet.
 
 ## Visual Identity
 
@@ -66,7 +68,17 @@ background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
 .headline: 28px, weight 400, line-height 1.5
 .headline em: italic, var(--warm-gold)
 
-/* CTA Button */
+/* Hero eyebrow */
+.hero-eyebrow: 11px, letter-spacing 3px, uppercase, opacity 0.5
+
+/* Hero sub paragraph */
+.hero-sub: 16px, weight 400, line-height 1.7, opacity 0.75
+.hero-sub em: italic, var(--warm-gold)
+
+/* CTA Buttons — two variants */
+/* Primary (hero): gold-filled background, deep navy text */
+.hero-cta: background var(--warm-gold), color var(--deep-navy), 12px, padding 14px 32px, letter-spacing 1px, uppercase
+/* Secondary: transparent with warm cream border */
 .cta: 12px, padding 12px 28px, border 1px solid rgba(240,236,232,0.25), letter-spacing 1px
 
 /* Section Headlines */
@@ -101,6 +113,39 @@ Stagger node delays for organic feel.
 
 - On dark: `#f0ece8` (warm cream)
 - On light: `#1f2d3a` (deep navy)
+
+## Target Audience
+
+**Primary: MSPs (Managed Service Providers)**
+- Exec/IT decision-makers at mid-market MSPs
+- Pain: AI paralysis (don't know where to start), operating blind (no unified reporting), bad data at source, tools bought but not used
+- They are already in the Microsoft ecosystem (Teams, SharePoint, Azure) — don't position Fabric as new, position it as what they already have, finally unified
+- Validated by Mark Clancy's MSP research; Jenn (marketer) confirmed education-first as the moat
+
+**Secondary: Convention centers** *(in progress — rows TBD with Mark's input)*
+
+**What resonates:**
+- "We teach first" — they're burned by vendors who pitch before understanding the problem
+- "No rip-and-replace" — they can't afford downtime or migrations
+- "Foundation we've made trustworthy" — trust is the purchase, not the software
+- Real people, subscription model, with you every step
+
+**What to avoid:**
+- Enterprise language (Fortune 500, Accenture-style positioning feels distant to SMB MSPs)
+- Feature lists before context
+- Anything that sounds like another SaaS vendor
+
+## Page Structure (current)
+
+Sections in order: Hero → Foundation (Phase 2) → Pain Points table (Phase 3, in progress) → Pricing → Client logos → Team → Footer
+
+**Removed:** "What We Do" capability tabs section — replaced by Phase 3 pain points table.
+
+## Section Design Principles
+
+- Prefer **editorial layouts** over card grids. Gold left-border blocks feel warm and conversational; boxed cards feel like vendor spec sheets.
+- Sections flow from education → proof → action. Don't lead with features or pricing.
+- Use eyebrow labels (`font-size: 11px, letter-spacing: 3px, uppercase, warm-gold`) to orient the reader before each section.
 
 ## Application
 

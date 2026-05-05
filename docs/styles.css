@@ -24,7 +24,6 @@ body {
   background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
   color: var(--warm-cream);
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* ==================== */
@@ -491,48 +490,8 @@ a:focus-visible {
 }
 
 /* ==================== */
-/* What We Do Section   */
+/* Section Headlines    */
 /* ==================== */
-
-.what-we-do-section {
-  padding: 120px 40px;
-  background: var(--slate);
-  scroll-margin-top: 40px;
-}
-
-.what-we-do-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 64px;
-}
-
-.what-we-do-header .section-headline {
-  margin-bottom: 16px;
-}
-
-.what-we-do-intro {
-  font-size: 16px;
-  color: rgba(240, 236, 232, 0.8);
-  line-height: 1.6;
-  text-align: center;
-}
-
-.what-we-do-intro em {
-  font-style: italic;
-  color: var(--warm-gold);
-}
-
-.what-we-do-container {
-  display: flex;
-  gap: 80px;
-  max-width: 1100px;
-  margin: 0 auto;
-  align-items: stretch;
-}
-
-.capabilities-list {
-  flex: 0 0 320px;
-}
 
 .section-headline {
   font-size: 42px;
@@ -547,295 +506,11 @@ a:focus-visible {
   color: var(--warm-gold);
 }
 
-.capability-items {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.capability-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: left;
-  width: 100%;
-  font-family: "DM Sans", sans-serif;
-  color: var(--warm-cream);
-  opacity: 0.5;
-  position: relative;
-}
-
-.capability-item:hover {
-  opacity: 0.8;
-  background: rgba(240, 236, 232, 0.03);
-}
-
-.capability-item.active {
-  opacity: 1;
-  background: rgba(240, 236, 232, 0.05);
-  border-color: rgba(212, 175, 130, 0.3);
-}
-
-.capability-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  color: var(--warm-cream);
-  transition: color 0.3s ease;
-}
-
-.capability-item.active .capability-icon {
-  color: var(--warm-gold);
-}
-
-.capability-label {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  flex: 1;
-}
-
-.capability-line {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 2px;
-  background: var(--warm-gold);
-  transition: width 0.3s ease;
-}
-
-.capability-item.active .capability-line {
-  width: 40px;
-}
-
-/* Detail Panel - Right Side */
-.capability-detail-wrapper {
-  flex: 1;
-  position: relative;
-  align-self: stretch;
-}
-
-.capability-detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
-}
-
-.capability-detail.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  position: relative;
-  height: 100%;
-}
-
-.detail-split {
-  display: flex;
-  gap: 0;
-  background: rgba(31, 45, 58, 0.6);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(240, 236, 232, 0.08);
-  height: 100%;
-}
-
-.detail-visual {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(42, 58, 74, 0.8) 0%, rgba(31, 45, 58, 0.8) 100%);
-  padding: 40px;
-}
-
-.detail-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 200px;
-  border: 2px dashed rgba(240, 236, 232, 0.1);
-  border-radius: 12px;
-  color: var(--warm-cream);
-}
-
-.placeholder-icon {
-  width: 80px;
-  height: 80px;
-  opacity: 0.4;
-}
-
-.detail-image-container {
-  width: 100%;
-  height: 200px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.detail-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1);
-  transition: transform 0.5s ease;
-}
-
-.detail-image-container:hover .detail-image {
-  transform: scale(1);
-}
-
-/* Platform Logos - Horizontal with Connector */
-.platform-logos {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0;
-}
-
-.platform-logo {
-  object-fit: contain;
-}
-
-.platform-logo-fabric {
-  width: 100px;
-  height: auto;
-}
-
-.platform-logo-claude {
-  width: 56px;
-  height: auto;
-  margin-left: 8px;
-}
-
-.platform-connector {
-  width: 60px;
-  height: 40px;
-}
-
-.connector-node {
-  animation: pulse 6s ease-in-out infinite;
-}
-
-.detail-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 48px 40px;
-  background: rgba(240, 236, 232, 0.02);
-}
-
-.detail-text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--warm-cream);
-  opacity: 0.8;
-}
-
-.detail-text em {
-  font-style: italic;
-  color: var(--warm-gold);
-}
-
-/* Responsive - What We Do */
 @media (max-width: 900px) {
-  .what-we-do-section {
-    padding: 80px 24px;
-  }
-
-  .what-we-do-header {
-    margin-bottom: 48px;
-  }
-
-  .what-we-do-header .section-headline {
-    font-size: 32px;
-  }
-
-  .what-we-do-intro {
-    font-size: 15px;
-  }
-
-  .what-we-do-container {
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  .capabilities-list {
-    flex: none;
-    width: 100%;
-  }
-
   .section-headline {
     font-size: 32px;
     text-align: center;
     margin-bottom: 32px;
-  }
-
-  .capability-items {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .capability-item {
-    width: auto;
-    padding: 12px 20px;
-  }
-
-  .capability-line {
-    display: none;
-  }
-
-  .capability-detail-wrapper {
-    min-height: auto;
-  }
-
-  .detail-split {
-    flex-direction: column;
-  }
-
-  .detail-visual {
-    min-height: 200px;
-    padding: 32px;
-  }
-
-  .detail-content {
-    padding: 32px 24px;
-  }
-
-  .detail-text {
-    font-size: 16px;
-  }
-
-  .capability-label {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .capability-items {
-    flex-direction: column;
-  }
-
-  .capability-item {
-    width: 100%;
   }
 }
 
@@ -1526,5 +1201,137 @@ a:focus-visible {
 @media (max-width: 480px) {
   .footer-v1.footer-minimal {
     padding: 20px 16px;
+  }
+}
+
+/* ========================= */
+/* Trust / Foundation Section */
+/* ========================= */
+
+.trust-section {
+  padding: 80px 40px;
+  background: var(--deep-navy);
+  text-align: center;
+}
+
+.trust-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  opacity: 0.8;
+  margin-bottom: 24px;
+}
+
+.trust-headline {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--warm-cream);
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.trust-headline em {
+  font-style: italic;
+  color: var(--warm-gold);
+}
+
+.trust-footer-line {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--warm-cream);
+  opacity: 0.75;
+  margin-top: 56px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trust-footer-line em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
+.trust-footer-break {
+  display: block;
+  margin-top: 6px;
+}
+
+.trust-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.trust-block {
+  border-left: 2px solid var(--warm-gold);
+  padding-left: 28px;
+}
+
+.trust-block-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 18px;
+  opacity: 0.8;
+}
+
+.trust-block-logo--claude {
+  height: 20px;
+}
+
+.trust-block-name {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  opacity: 0.7;
+  margin-bottom: 14px;
+}
+
+.trust-block-body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--warm-cream);
+  opacity: 0.72;
+}
+
+.trust-block-body em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .trust-section {
+    padding: 60px 24px;
+  }
+
+  .trust-headline {
+    font-size: 24px;
+  }
+
+  .trust-headline-line {
+    display: block;
+  }
+
+  .trust-headline-line + .trust-headline-line {
+    margin-top: 12px;
+  }
+
+  .trust-blocks {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .trust-footer-line {
+    font-size: 16px;
   }
 }
