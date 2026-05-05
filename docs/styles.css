@@ -495,33 +495,30 @@ a:focus-visible {
 /* ==================== */
 
 .team-section {
-  padding: 40px 40px 120px;
+  padding: 80px 40px 0;
   background: var(--deep-navy);
+  text-align: center;
 }
 
 .team-headline {
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 400;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 56px;
   color: var(--warm-cream);
-}
-
-.team-intro {
-  font-size: 16px;
-  text-align: center;
-  color: rgba(240, 236, 232, 0.7);
-  margin-bottom: 64px;
-  max-width: 540px;
+  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
 }
 
-.team-headline em,
-.team-intro em {
+.team-headline em {
   font-style: italic;
   color: var(--warm-gold);
+}
+
+.team-section .cta-section {
+  margin-top: 72px;
+  margin-bottom: 0;
 }
 
 .team-grid {
@@ -601,7 +598,6 @@ a:focus-visible {
   }
 
   .team-headline {
-    font-size: 32px;
     margin-bottom: 48px;
   }
 
@@ -994,7 +990,7 @@ a:focus-visible {
 /* ========================= */
 
 .pain-section {
-  padding: 24px 40px 96px;
+  padding: 80px 40px 24px;
   background: var(--deep-navy);
 }
 
@@ -1004,12 +1000,11 @@ a:focus-visible {
 }
 
 .pain-headline {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 400;
   line-height: 1.4;
   color: var(--warm-cream);
-  margin-bottom: 52px;
-  max-width: 520px;
+  margin-bottom: 56px;
 }
 
 .pain-table {
@@ -1092,7 +1087,7 @@ a:focus-visible {
   }
 
   .pain-headline {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 40px;
   }
 
