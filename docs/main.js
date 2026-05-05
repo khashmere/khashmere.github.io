@@ -10,6 +10,40 @@ if (nav) {
   });
 }
 
+// Mobile menu toggle
+const navToggle = document.querySelector('.nav-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
+
+if (navToggle && mobileMenu) {
+  const openMenu = () => {
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('menu-open');
+    document.body.classList.add('menu-open');
+  };
+
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('menu-open');
+    document.body.classList.remove('menu-open');
+  };
+
+  navToggle.addEventListener('click', openMenu);
+  mobileMenuClose?.addEventListener('click', closeMenu);
+  mobileMenuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+}
+
 // What We Do - Capability Accordion
 const capabilityItems = document.querySelectorAll('.capability-item');
 const capabilityDetails = document.querySelectorAll('.capability-detail');

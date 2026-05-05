@@ -22,7 +22,32 @@
       <a href="pricing.html">PRICING</a>
       <a href="contact.html">CONTACT</a>
     </div>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <a href="index.html" class="logo">
+        <img src="assets/khashmere-icon.svg" alt="" class="logo-icon">
+        <span>KHASHMERE</span>
+      </a>
+      <button class="mobile-menu-close" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-menu-link active">Why Khashmere</a>
+      <a href="pricing.html" class="mobile-menu-link">Pricing</a>
+      <a href="contact.html" class="mobile-menu-link">Contact</a>
+    </nav>
+    <a href="contact.html" class="mobile-menu-cta">Book a strategy session</a>
+  </div>
 
   <main class="landing-container">
     <!-- Left side: Hero content -->
@@ -30,8 +55,8 @@
       <div class="hero-content">
         <p class="hero-eyebrow">Why Khashmere</p>
         <h1 class="headline">
-          Get your data under control.<br/>
-          Then <em>unlock the AI</em> that fixes what's slowing you down.
+          <span class="headline-line">Get your data under control.</span>
+          <span class="headline-line">Then <em>unlock the AI</em> that fixes what's slowing you down.</span>
         </h1>
         <p class="hero-sub">
           Most vendors pitch first. <em>We teach first</em> — what AI is worth your time, what isn't, and where to begin. Then we build it with you, on a foundation we've made trustworthy.
