@@ -93,7 +93,7 @@
 }
 
 .contact-card-body {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .contact-value {
@@ -223,10 +223,6 @@
   .contact-card {
     padding: 16px 20px;
     text-align: center;
-  }
-
-  .contact-card-body {
-    padding-left: 0;
   }
 
   .contact-card-header {
