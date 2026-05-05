@@ -1,7 +1,5 @@
 :root {
-  --soft-navy: #3d4f61;
   --deep-navy: #1f2d3a;
-  --slate: #2a3a4a;
   --warm-cream: #f0ece8;
   --warm-gold: #d4af82;
 }
@@ -495,7 +493,7 @@ a:focus-visible {
 /* ==================== */
 
 .team-section {
-  padding: 80px 40px 0;
+  padding: 80px 40px 80px;
   background: var(--deep-navy);
   text-align: center;
 }
@@ -519,6 +517,9 @@ a:focus-visible {
 .team-section .cta-section {
   margin-top: 72px;
   margin-bottom: 0;
+  max-width: 1104px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .team-grid {
