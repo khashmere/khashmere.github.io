@@ -514,6 +514,21 @@ a:focus-visible {
   color: var(--warm-gold);
 }
 
+.team-subheadline {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--warm-cream);
+  opacity: 0.72;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.team-subheadline em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
 .team-section .cta-section {
   margin-top: 72px;
   margin-bottom: 0;
@@ -591,6 +606,12 @@ a:focus-visible {
   color: var(--warm-cream);
   opacity: 0.7;
   max-width: 280px;
+}
+
+.team-bio em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
