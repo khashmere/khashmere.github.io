@@ -879,12 +879,27 @@ a:focus-visible {
   line-height: 1.5;
   color: var(--warm-cream);
   max-width: 640px;
-  margin: 0 auto 56px;
+  margin: 0 auto 20px;
 }
 
 .trust-headline em {
   font-style: italic;
   color: var(--warm-gold);
+}
+
+.trust-subheadline {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--warm-cream);
+  opacity: 0.72;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+
+.trust-subheadline em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
 }
 
 .trust-footer-line {
@@ -913,8 +928,7 @@ a:focus-visible {
 .trust-blocks {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  max-width: 960px;
+  column-gap: 96px;
   margin: 0 auto;
   text-align: left;
 }
@@ -966,6 +980,10 @@ a:focus-visible {
 
   .trust-headline {
     font-size: 24px;
+  }
+
+  .trust-subheadline {
+    font-size: 15px;
   }
 
   .trust-headline-line {
