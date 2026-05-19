@@ -345,7 +345,11 @@ body.menu-open {
 .brand-logo-large {
   width: 450px;
   height: 450px;
-  opacity: 0.9;
+  object-fit: contain;
+  display: block;
+  /* Fade GIF edges into the body gradient so its slate background is hidden */
+  -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
+          mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
 }
 
 /* Core glow breathing animation */
@@ -1026,60 +1030,193 @@ a:focus-visible {
 }
 
 /* ========================= */
-/* Audience Frame (umbrella) */
+/* Our Approach Section      */
 /* ========================= */
 
-.audience-frame {
-  padding: 96px 40px 32px;
+.approach-section {
+  padding: 80px 40px 96px;
   background: var(--deep-navy);
+  text-align: center;
 }
 
-.audience-frame-headline {
-  font-size: 38px;
+.approach-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.approach-headline {
+  font-size: 32px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.5;
   color: var(--warm-cream);
-  max-width: 760px;
-  margin-bottom: 24px;
+  max-width: 640px;
+  margin: 0 auto 56px;
 }
 
-.audience-frame-headline em {
+.approach-headline em {
   font-style: italic;
   color: var(--warm-gold);
 }
 
-.audience-frame-intro {
-  font-size: 17px;
-  line-height: 1.7;
+/* Constellation layout: 5 cards positioned asymmetrically like the hero
+   brand visual, with gold curves threading between them. */
+.approach-constellation {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  aspect-ratio: 1200 / 720;
+  text-align: left;
+}
+
+.approach-threads {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.approach-step {
+  position: absolute;
+  width: 248px;
+  padding: 18px 22px 18px 22px;
+  background: rgba(31, 45, 58, 0.55);
+  border: 1px solid rgba(212, 175, 130, 0.18);
+  border-radius: 2px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+/* Anchor positions match the hero SVG's 5 node positions
+   (60,20), (120,40), (100,120), (140,180), (50,170) in a 200x200 viewBox,
+   rescaled to a 1200x720 grid: x*6, y*3.6. */
+.approach-step--1 { left: 15%; top: 11.1%;  }   /* (180, 80) */
+.approach-step--2 { left: 70%; top: 20.8%;  }   /* (840, 150) */
+.approach-step--3 { left: 50%; top: 55.6%;  }   /* (600, 400) */
+.approach-step--4 { left: 72%; top: 86.1%;  }   /* (864, 620) */
+.approach-step--5 { left: 12%; top: 80.6%;  }   /* (144, 580) */
+
+.approach-step-dot {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--warm-gold);
+  box-shadow: 0 0 14px 2px rgba(212, 175, 130, 0.5);
+}
+
+.approach-step-num {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--warm-gold);
+  opacity: 0.85;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.approach-step-title {
+  font-size: 20px;
+  font-weight: 400;
   color: var(--warm-cream);
-  opacity: 0.72;
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+
+.approach-step-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--warm-cream);
+  opacity: 0.78;
+  margin: 0;
+}
+
+.approach-footer-line {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--warm-cream);
+  opacity: 0.8;
+  margin: 64px auto 0;
+  line-height: 1.65;
   max-width: 640px;
 }
 
-.audience-frame-intro em {
+.approach-footer-line em {
   font-style: italic;
   color: var(--warm-gold);
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  .audience-frame {
-    padding: 72px 24px 24px;
+.approach-footer-break {
+  display: block;
+  margin-top: 6px;
+}
+
+/* Narrower constellation cards under 1100px (less horizontal space) */
+@media (max-width: 1100px) {
+  .approach-step {
+    width: 220px;
+    padding: 16px 20px;
   }
-  .audience-frame-headline {
-    font-size: 28px;
-  }
-  .audience-frame-intro {
-    font-size: 16px;
+
+  .approach-step-title {
+    font-size: 18px;
   }
 }
 
-@media (max-width: 480px) {
-  .audience-frame {
-    padding: 64px 16px 24px;
+/* Collapse to vertical stack on tablets/mobile — abandon the constellation
+   shape but keep the gold thread feeling via a left-border guide. */
+@media (max-width: 880px) {
+  .approach-constellation {
+    aspect-ratio: auto;
+    max-width: 540px;
+    display: block;
+    padding-left: 12px;
+    border-left: 1px solid rgba(212, 175, 130, 0.35);
   }
-  .audience-frame-headline {
+
+  .approach-threads {
+    display: none;
+  }
+
+  .approach-step {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    width: 100%;
+    margin: 0 0 16px 0;
+    background: transparent;
+    border: none;
+    border-left: none;
+    padding: 12px 0 12px 20px;
+  }
+
+  .approach-step-dot {
+    top: 18px;
+    left: -17px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .approach-section {
+    padding: 60px 24px 72px;
+  }
+
+  .approach-headline {
     font-size: 24px;
+  }
+
+  .approach-step-title {
+    font-size: 18px;
   }
 }
 
@@ -1088,7 +1225,7 @@ a:focus-visible {
 /* ========================= */
 
 .pain-section {
-  padding: 80px 40px 24px;
+  padding: 56px 40px 16px;
   background: var(--deep-navy);
 }
 
@@ -1104,7 +1241,7 @@ a:focus-visible {
 .pain-headline {
   font-size: 26px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.3;
   color: var(--warm-cream);
   margin-bottom: 16px;
 }
