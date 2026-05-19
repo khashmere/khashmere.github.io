@@ -929,6 +929,7 @@ a:focus-visible {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 96px;
+  max-width: 960px;
   margin: 0 auto;
   text-align: left;
 }
