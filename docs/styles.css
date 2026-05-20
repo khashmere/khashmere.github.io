@@ -1035,7 +1035,7 @@ a:focus-visible {
 
 .audience-frame {
   padding: 56px 40px 24px;
-  background: var(--deep-navy);
+  background: rgb(31, 45, 58);
   text-align: center;
 }
 
