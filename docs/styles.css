@@ -347,7 +347,6 @@ body.menu-open {
   height: 450px;
   object-fit: contain;
   display: block;
-  /* Fade GIF edges into the body gradient so its slate background is hidden */
   -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
           mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
 }
@@ -516,21 +515,6 @@ a:focus-visible {
 .team-headline em {
   font-style: italic;
   color: var(--warm-gold);
-}
-
-.team-subheadline {
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--warm-cream);
-  opacity: 0.72;
-  max-width: 640px;
-  margin: 0 auto 56px;
-}
-
-.team-subheadline em {
-  font-style: italic;
-  color: var(--warm-gold);
-  opacity: 1;
 }
 
 .team-section .cta-section {
@@ -911,21 +895,6 @@ a:focus-visible {
   color: var(--warm-gold);
 }
 
-.trust-subheadline {
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--warm-cream);
-  opacity: 0.72;
-  max-width: 720px;
-  margin: 0 auto 56px;
-}
-
-.trust-subheadline em {
-  font-style: italic;
-  color: var(--warm-gold);
-  opacity: 1;
-}
-
 .trust-footer-line {
   font-size: 18px;
   font-weight: 400;
@@ -1005,10 +974,6 @@ a:focus-visible {
 
   .trust-headline {
     font-size: 24px;
-  }
-
-  .trust-subheadline {
-    font-size: 15px;
   }
 
   .trust-headline-line {
@@ -1176,27 +1141,6 @@ a:focus-visible {
   margin: 0;
 }
 
-.approach-footer-line {
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--warm-cream);
-  opacity: 0.8;
-  margin: 64px auto 0;
-  line-height: 1.65;
-  max-width: 640px;
-}
-
-.approach-footer-line em {
-  font-style: italic;
-  color: var(--warm-gold);
-  opacity: 1;
-}
-
-.approach-footer-break {
-  display: block;
-  margin-top: 6px;
-}
-
 /* Narrower constellation cards under 1100px (less horizontal space) */
 @media (max-width: 1100px) {
   .approach-step {
@@ -1277,24 +1221,12 @@ a:focus-visible {
   margin: 0 auto;
 }
 
-.pain-headline {
-  font-size: 26px;
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--warm-cream);
-  margin-bottom: 16px;
-}
-
 @media (max-width: 768px) {
   .pain-section {
     padding: 72px 24px;
   }
   .pain-section--sub {
     padding-top: 40px;
-  }
-
-  .pain-headline {
-    font-size: 22px;
   }
 }
 
@@ -1308,15 +1240,6 @@ a:focus-visible {
 }
 
 /* Pain blocks (editorial — gold left-border, matching .trust-block) */
-
-.pain-intro {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--warm-cream);
-  opacity: 0.6;
-  max-width: 560px;
-  margin-bottom: 56px;
-}
 
 .pain-blocks {
   display: grid;
@@ -1334,17 +1257,16 @@ a:focus-visible {
   grid-row: span 4;
 }
 
-.pain-block-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--warm-gold);
-  opacity: 0.7;
-  margin-bottom: 18px;
+.pain-section .trust-eyebrow {
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  color: var(--warm-cream);
+  opacity: 0.9;
+  margin-bottom: 36px;
 }
 
 .pain-block-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   font-style: italic;
   color: var(--warm-gold);
