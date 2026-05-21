@@ -82,6 +82,32 @@
           <circle cx="50" cy="170" r="5" fill="#d4af82" opacity="0.4" class="node node-5"/>
           <!-- Central glow -->
           <circle cx="90" cy="70" r="50" fill="url(#landingGlow)" opacity="0.3" class="core-glow"/>
+
+          <!-- Hidden motion path: ball travels only along visible threads.
+               1→2 (L1) → 3 (L2) → 4 (L4) → back to 3 (L4 reversed)
+               → 5 (L5) → back to 3 (L5 reversed) → 1 (L3 reversed).
+               Closed loop, so it ping-pongs across the network forever. -->
+          <path id="hero-journey"
+                d="M60,20 Q90,60 120,40 Q150,90 100,120 Q130,150 140,180 Q130,150 100,120 Q60,150 50,170 Q60,150 100,120 Q40,80 60,20"
+                fill="none" stroke="none"/>
+
+          <!-- Ball that rolls along the journey -->
+          <circle r="4.5" fill="#d4af82" opacity="0.25">
+            <animateMotion dur="26s" repeatCount="indefinite" calcMode="linear">
+              <mpath href="#hero-journey"/>
+            </animateMotion>
+          </circle>
+          <circle r="2.5" fill="#d4af82" opacity="0.55">
+            <animateMotion dur="26s" repeatCount="indefinite" calcMode="linear">
+              <mpath href="#hero-journey"/>
+            </animateMotion>
+          </circle>
+          <circle r="1.3" fill="#f0ece8">
+            <animateMotion dur="26s" repeatCount="indefinite" calcMode="linear">
+              <mpath href="#hero-journey"/>
+            </animateMotion>
+          </circle>
+
           <defs>
             <radialGradient id="landingGlow">
               <stop offset="0%" stop-color="#d4af82"/>
@@ -161,9 +187,11 @@
              control points produce soft, organic arcs like the hero. -->
         <svg class="approach-threads" viewBox="0 0 1200 720"
              preserveAspectRatio="none" aria-hidden="true">
-          <!-- Combined motion path: 01 → 02 → 03 → 04 → 05 (invisible) -->
+          <!-- Combined motion path: 01 → 02 → 03 → 04 → 05, then reverse
+               back 05 → 04 → 03 → 02 → 01 along the same visible curves
+               so the ball never leaves a thread. -->
           <path id="approach-journey"
-                d="M276,80 Q608,40 936,150 Q884,300 624,400 Q804,510 960,620 Q600,680 240,580"
+                d="M276,80 Q608,40 936,150 Q884,300 624,400 Q804,510 960,620 Q600,680 240,580 Q600,680 960,620 Q804,510 624,400 Q884,300 936,150 Q608,40 276,80"
                 fill="none" stroke="none"/>
 
           <!-- Visible connector curves -->
@@ -178,19 +206,19 @@
 
           <!-- Ball that rolls 01 → 02 → 03 → 04 → 05 -->
           <circle r="22" fill="var(--warm-gold)" opacity="0.18">
-            <animateMotion dur="14s" repeatCount="indefinite"
+            <animateMotion dur="26s" repeatCount="indefinite"
                            calcMode="linear">
               <mpath href="#approach-journey"/>
             </animateMotion>
           </circle>
           <circle r="12" fill="var(--warm-gold)" opacity="0.35">
-            <animateMotion dur="14s" repeatCount="indefinite"
+            <animateMotion dur="26s" repeatCount="indefinite"
                            calcMode="linear">
               <mpath href="#approach-journey"/>
             </animateMotion>
           </circle>
           <circle r="6" fill="var(--warm-cream)">
-            <animateMotion dur="14s" repeatCount="indefinite"
+            <animateMotion dur="26s" repeatCount="indefinite"
                            calcMode="linear">
               <mpath href="#approach-journey"/>
             </animateMotion>

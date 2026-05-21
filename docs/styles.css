@@ -345,10 +345,7 @@ body.menu-open {
 .brand-logo-large {
   width: 450px;
   height: 450px;
-  object-fit: contain;
-  display: block;
-  -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
-          mask-image: radial-gradient(circle at center, #000 55%, transparent 95%);
+  opacity: 0.9;
 }
 
 /* Core glow breathing animation */
