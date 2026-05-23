@@ -1006,18 +1006,17 @@ a:focus-visible {
 }
 
 .audience-frame-intro {
-  font-size: 20px;
-  line-height: 1.55;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--warm-cream);
   max-width: 720px;
   margin: 0 auto;
-  opacity: 0.92;
 }
 
 .audience-frame-intro em {
   font-style: italic;
   color: var(--warm-gold);
-  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -1026,7 +1025,7 @@ a:focus-visible {
   }
 
   .audience-frame-intro {
-    font-size: 17px;
+    font-size: 24px;
   }
 }
 

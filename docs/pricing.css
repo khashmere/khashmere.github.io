@@ -313,7 +313,7 @@
 }
 
 .cta-headline {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--warm-cream);
@@ -407,7 +407,7 @@
   }
 
   .cta-headline {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
