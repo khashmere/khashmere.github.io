@@ -189,27 +189,6 @@ body {
   opacity: 1;
 }
 
-.mobile-menu-cta {
-  display: block;
-  width: 100%;
-  padding: 16px 28px;
-  margin-bottom: 16px;
-  background: var(--warm-gold);
-  border: none;
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--deep-navy);
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-.mobile-menu-cta:hover {
-  opacity: 0.9;
-}
-
 html.menu-open,
 body.menu-open {
   overflow: hidden;
@@ -265,14 +244,6 @@ body.menu-open {
   font-weight: 400;
   line-height: 1.35;
   margin-bottom: 28px;
-}
-
-.headline-line {
-  display: block;
-}
-
-.headline-line + .headline-line {
-  margin-top: 16px;
 }
 
 .headline em {
@@ -438,10 +409,6 @@ body.menu-open {
   .headline {
     font-size: 26px;
     margin-bottom: 32px;
-  }
-
-  .headline-line + .headline-line {
-    margin-top: 20px;
   }
 }
 
@@ -1276,6 +1243,19 @@ a:focus-visible {
   color: var(--warm-cream);
   opacity: 0.72;
   margin-bottom: 28px;
+}
+
+.pain-source {
+  color: var(--warm-gold);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(212, 175, 130, 0.45);
+  transition: border-bottom-color 0.3s ease, opacity 0.3s ease;
+}
+
+.pain-source:hover,
+.pain-source:focus {
+  border-bottom-color: var(--warm-gold);
+  opacity: 0.9;
 }
 
 .pain-block-want-label {

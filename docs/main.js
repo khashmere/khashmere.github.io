@@ -14,7 +14,7 @@ if (nav) {
 const navToggle = document.querySelector('.nav-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 const mobileMenuClose = document.querySelector('.mobile-menu-close');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
 if (navToggle && mobileMenu) {
   const openMenu = () => {
