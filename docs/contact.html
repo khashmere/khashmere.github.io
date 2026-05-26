@@ -19,7 +19,7 @@
     </a>
     <div class="nav-links">
       <a href="pricing.html">PRICING</a>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1QA_GVatW2ioAfNUgg6m_d7FfjYxc5EYWtRk3lodXmL7OyhJdyPliQDGRczuwRyW-bdDe4gH_I" target="_blank" rel="noopener noreferrer">CONTACT US</a>
+      <a href="contact.html" class="active">CONTACT US</a>
     </div>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="nav-toggle-line"></span>
@@ -43,7 +43,7 @@
     <nav class="mobile-menu-nav" aria-label="Mobile navigation">
       <a href="msp.html" class="mobile-menu-link">For MSPs</a>
       <a href="pricing.html" class="mobile-menu-link">Pricing</a>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1QA_GVatW2ioAfNUgg6m_d7FfjYxc5EYWtRk3lodXmL7OyhJdyPliQDGRczuwRyW-bdDe4gH_I" target="_blank" rel="noopener noreferrer" class="mobile-menu-link">Contact Us</a>
+      <a href="contact.html" class="mobile-menu-link active">Contact Us</a>
     </nav>
   </div>
 
@@ -68,23 +68,57 @@
 
     <div class="contact-content">
       <h1 class="contact-headline"><em>Get</em> in touch</h1>
+      <p class="contact-intro">Send us an email or grab a time on our calendar.</p>
 
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1QA_GVatW2ioAfNUgg6m_d7FfjYxc5EYWtRk3lodXmL7OyhJdyPliQDGRczuwRyW-bdDe4gH_I" target="_blank" rel="noopener noreferrer" class="booking-card">
-        <div class="booking-card-glow" aria-hidden="true"></div>
-        <svg class="booking-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2"/>
-          <path d="M3 9h18"/>
-          <path d="M8 3v4"/>
-          <path d="M16 3v4"/>
-          <circle cx="12" cy="14" r="1.5" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="booking-card-cta">
-          <span>Open calendar</span>
-          <svg class="booking-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path d="M5 12h14M13 6l6 6-6 6"/>
+      <div class="contact-options">
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1QA_GVatW2ioAfNUgg6m_d7FfjYxc5EYWtRk3lodXmL7OyhJdyPliQDGRczuwRyW-bdDe4gH_I" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-card-glow" aria-hidden="true"></div>
+          <svg class="contact-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M3 9h18"/>
+            <path d="M8 3v4"/>
+            <path d="M16 3v4"/>
+            <circle cx="12" cy="14" r="1.5" fill="currentColor" stroke="none"/>
           </svg>
-        </span>
-      </a>
+          <div class="contact-card-text">
+            <p class="contact-card-meta">Book a time</p>
+            <p class="contact-card-value">30&#8209;minute Intro Call</p>
+          </div>
+          <span class="contact-card-cta">
+            <span>Open calendar</span>
+            <svg class="contact-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </span>
+        </a>
+
+        <div class="contact-card contact-card--email">
+          <div class="contact-card-glow" aria-hidden="true"></div>
+          <svg class="contact-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+          <div class="contact-card-text">
+            <p class="contact-card-meta">Email us</p>
+            <p class="contact-card-value">info@khashmere.com</p>
+          </div>
+          <button type="button" class="contact-card-cta contact-card-cta--copy" data-copy-email="info@khashmere.com">
+            <span class="cta-state cta-state--default">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2"/>
+                <path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+              </svg>
+              <span>Copy email</span>
+            </span>
+            <span class="cta-state cta-state--copied" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12l4 4 10-10"/>
+              </svg>
+              <span>Copied</span>
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   </main>
 

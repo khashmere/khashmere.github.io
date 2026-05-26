@@ -81,28 +81,25 @@ if (capabilityItems.length > 0) {
   });
 }
 
-// Footer copy to clipboard
-const copyButtons = document.querySelectorAll('.footer-contact-item[data-copy]');
-const feedbackEl = document.querySelector('.footer-copy-feedback');
-
-if (copyButtons.length > 0 && feedbackEl) {
-  copyButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const textToCopy = btn.getAttribute('data-copy');
-      try {
-        await navigator.clipboard.writeText(textToCopy);
-        feedbackEl.textContent = `Copied "${textToCopy}" to clipboard`;
-        feedbackEl.classList.add('show');
-        setTimeout(() => {
-          feedbackEl.classList.remove('show');
-        }, 2000);
-      } catch (err) {
-        feedbackEl.textContent = 'Failed to copy';
-        feedbackEl.classList.add('show');
-        setTimeout(() => {
-          feedbackEl.classList.remove('show');
-        }, 2000);
-      }
-    });
+// Inline copy buttons (e.g. contact card email)
+const inlineCopyButtons = document.querySelectorAll('[data-copy-email]');
+inlineCopyButtons.forEach(btn => {
+  const defaultLabel = btn.getAttribute('aria-label') || 'Copy to clipboard';
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const text = btn.getAttribute('data-copy-email');
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.classList.add('is-copied');
+      btn.setAttribute('aria-label', 'Copied');
+      setTimeout(() => {
+        btn.classList.remove('is-copied');
+        btn.setAttribute('aria-label', defaultLabel);
+      }, 1800);
+    } catch (err) {
+      console.warn('Copy failed', err);
+    }
   });
-}
+});
+

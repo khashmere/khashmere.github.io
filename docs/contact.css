@@ -20,21 +20,11 @@
   text-align: center;
 }
 
-.contact-eyebrow {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--warm-cream);
-  opacity: 0.5;
-  margin-bottom: 20px;
-}
-
 .contact-headline {
   font-size: 42px;
   font-weight: 400;
   line-height: 1.3;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
   color: var(--warm-cream);
 }
 
@@ -48,12 +38,6 @@
   line-height: 1.6;
   margin-bottom: 48px;
   color: rgba(240, 236, 232, 0.65);
-}
-
-.contact-intro em {
-  font-style: italic;
-  color: var(--warm-gold);
-  opacity: 1;
 }
 
 /* Background constellation accents */
@@ -75,15 +59,22 @@
   left: -80px;
 }
 
-/* Booking card */
-.booking-card {
+/* Contact options grid */
+.contact-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* Contact card */
+.contact-card {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
-  width: 100%;
-  padding: 28px 36px;
+  padding: 36px 32px;
   border-radius: 16px;
   background: rgba(240, 236, 232, 0.04);
   border: 1px solid rgba(212, 175, 130, 0.3);
@@ -94,19 +85,19 @@
   transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
-.booking-card:hover,
-.booking-card:focus-visible {
+.contact-card:hover,
+.contact-card:focus-visible {
   transform: translateY(-2px);
   border-color: var(--warm-gold);
   background: rgba(240, 236, 232, 0.06);
 }
 
-.booking-card:focus-visible {
+.contact-card:focus-visible {
   outline: 2px solid var(--warm-gold);
   outline-offset: 4px;
 }
 
-.booking-card-glow {
+.contact-card-glow {
   position: absolute;
   inset: -50px;
   background: radial-gradient(
@@ -120,45 +111,49 @@
   pointer-events: none;
 }
 
-.booking-card-icon {
-  width: 44px;
-  height: 44px;
+.contact-card-icon {
+  width: 40px;
+  height: 40px;
   color: var(--warm-gold);
   flex-shrink: 0;
 }
 
-.booking-card-text {
+.contact-card-text {
   flex: 1;
   min-width: 0;
+  width: 100%;
 }
 
-.booking-card-meta {
+.contact-card-meta {
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--warm-cream);
   opacity: 0.5;
-  margin-bottom: 8px;
+  margin: 0 0 10px;
 }
 
-.booking-card-title {
-  font-size: 22px;
+.contact-card-value {
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.35;
   color: var(--warm-cream);
   margin: 0;
+  word-break: break-word;
 }
 
-.booking-card-title em {
-  font-style: italic;
-  color: var(--warm-gold);
+/* Email card uses a button CTA; lift on focus-within for keyboard users */
+.contact-card--email:focus-within {
+  transform: translateY(-2px);
+  border-color: var(--warm-gold);
+  background: rgba(240, 236, 232, 0.06);
 }
 
-.booking-card-cta {
+/* CTA pill — shared base for the anchor (Open calendar) and button (Copy email) variants */
+.contact-card-cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
   padding: 12px 22px;
   border: 1px solid rgba(240, 236, 232, 0.25);
   border-radius: 999px;
@@ -166,22 +161,62 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--warm-cream);
+  text-decoration: none;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.booking-card:hover .booking-card-cta,
-.booking-card:focus-visible .booking-card-cta {
+.contact-card:hover .contact-card-cta,
+.contact-card:focus-visible .contact-card-cta {
   background: rgba(212, 175, 130, 0.12);
   border-color: var(--warm-gold);
 }
 
-.booking-card-arrow {
+/* Button variant — reset native <button> styles so it matches the anchor */
+.contact-card-cta--copy {
+  font-family: inherit;
+  background: transparent;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+/* Copy state swap (default ↔ copied) */
+.cta-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta-state svg {
+  width: 15px;
+  height: 15px;
+}
+
+.cta-state--copied {
+  display: none;
+  color: var(--warm-gold);
+}
+
+.contact-card-cta--copy.is-copied {
+  border-color: var(--warm-gold);
+  background: rgba(212, 175, 130, 0.12);
+}
+
+.contact-card-cta--copy.is-copied .cta-state--default {
+  display: none;
+}
+
+.contact-card-cta--copy.is-copied .cta-state--copied {
+  display: inline-flex;
+}
+
+/* Arrow on the calendar card CTA */
+.contact-card-arrow {
   width: 16px;
   height: 16px;
   transition: transform 0.3s ease;
 }
 
-.booking-card:hover .booking-card-arrow {
+.contact-card:hover .contact-card-arrow {
   transform: translateX(4px);
 }
 
@@ -217,19 +252,18 @@
     left: -60px;
   }
 
-  .booking-card {
-    flex-direction: column;
-    align-items: flex-start;
+  .contact-options {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-card {
     gap: 20px;
     padding: 28px 28px;
   }
 
-  .booking-card-cta {
-    align-self: flex-start;
-  }
-
-  .booking-card-title {
-    font-size: 20px;
+  .contact-card-value {
+    font-size: 18px;
   }
 }
 
@@ -242,13 +276,13 @@
     font-size: 26px;
   }
 
-  .booking-card {
+  .contact-card {
     padding: 24px 22px;
     border-radius: 14px;
   }
 
-  .booking-card-title {
-    font-size: 18px;
+  .contact-card-value {
+    font-size: 17px;
   }
 }
 
@@ -257,12 +291,12 @@
 /* ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .booking-card-glow {
+  .contact-card-glow {
     animation: none;
   }
 
-  .booking-card,
-  .booking-card-arrow {
+  .contact-card,
+  .contact-card-arrow {
     transition: none;
   }
 }
