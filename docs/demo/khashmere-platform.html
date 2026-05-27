@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khashmere — Platform Architecture</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  width:100vw;height:100vh;overflow:hidden;
+  background:#05081a;
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  display:flex;flex-direction:column;color:#fff;
+}
+
+/* ── HEADER ── */
+header{
+  flex-shrink:0;height:54px;
+  background:linear-gradient(90deg,#0c0826 0%,#091228 50%,#0c0826 100%);
+  border-bottom:1px solid rgba(124,58,237,0.45);
+  display:flex;align-items:center;padding:0 20px;gap:14px;
+}
+.k-logo{
+  width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,#7c3aed 0%,#2563eb 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:900;font-family:Georgia,serif;
+  box-shadow:0 0 18px rgba(124,58,237,0.6);flex-shrink:0;
+}
+.brand-name{
+  font-size:20px;font-weight:800;letter-spacing:4px;
+  background:linear-gradient(90deg,#a78bfa,#60a5fa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.brand-sep{width:1px;height:22px;background:rgba(124,58,237,0.35);margin:0 4px;}
+.brand-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+
+/* ── DIAGRAM ── */
+.diagram-area{flex:1;overflow:hidden;position:relative;}
+#svg-d{width:100%;height:100%;}
+
+/* ── CONTROLS ── */
+.controls{
+  flex-shrink:0;height:50px;
+  background:rgba(5,8,26,0.97);
+  border-top:1px solid rgba(124,58,237,0.3);
+  display:flex;align-items:center;padding:0 16px;gap:12px;
+}
+.play-btn{
+  width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 12px rgba(124,58,237,0.5);
+  transition:box-shadow .2s,transform .2s;flex-shrink:0;
+}
+.play-btn:hover{box-shadow:0 0 22px rgba(124,58,237,0.8);transform:scale(1.08);}
+.timeline{flex:1;display:flex;align-items:center;gap:10px;}
+.t-label{font-family:'Courier New',monospace;font-size:11px;color:rgba(167,139,250,.7);min-width:34px;}
+input[type=range].seek{
+  flex:1;-webkit-appearance:none;height:4px;border-radius:2px;
+  background:rgba(124,58,237,0.2);outline:none;cursor:pointer;
+}
+input[type=range].seek::-webkit-slider-thumb{
+  -webkit-appearance:none;width:14px;height:14px;border-radius:50%;
+  background:linear-gradient(135deg,#a78bfa,#60a5fa);
+  box-shadow:0 0 8px rgba(167,139,250,0.9);cursor:pointer;
+}
+.speed-btn{
+  background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.4);
+  color:#a78bfa;font-size:11px;font-weight:700;padding:4px 10px;
+  border-radius:5px;cursor:pointer;letter-spacing:1px;
+  transition:background .2s;
+}
+.speed-btn:hover{background:rgba(124,58,237,0.32);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="k-logo">K</div>
+  <span class="brand-name">KHASHMERE</span>
+  <div class="brand-sep"></div>
+  <span class="brand-sub">Platform Architecture &amp; Data Flow</span>
+</header>
+
+<div class="diagram-area">
+<svg id="svg-d" viewBox="0 0 1440 630" xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+  <!-- Background gradients -->
+  <linearGradient id="gBg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#05081a"/>
+    <stop offset="100%" stop-color="#0a1128"/>
+  </linearGradient>
+  <linearGradient id="gCustomer" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0e0b2e"/>
+    <stop offset="100%" stop-color="#091a3e"/>
+  </linearGradient>
+  <linearGradient id="gMSP" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#071c14"/>
+    <stop offset="100%" stop-color="#082018"/>
+  </linearGradient>
+  <linearGradient id="gKhash" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#15083a"/>
+    <stop offset="100%" stop-color="#1a0b42"/>
+  </linearGradient>
+  <linearGradient id="gExt" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#081426"/>
+    <stop offset="100%" stop-color="#06101e"/>
+  </linearGradient>
+  <linearGradient id="gFabric" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#041228"/>
+    <stop offset="100%" stop-color="#061835"/>
+  </linearGradient>
+  <linearGradient id="gClaude" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1e1005"/>
+    <stop offset="100%" stop-color="#261506"/>
+  </linearGradient>
+  <linearGradient id="gKLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#7c3aed"/>
+    <stop offset="100%" stop-color="#2563eb"/>
+  </linearGradient>
+
+  <!-- Glow filters -->
+  <filter id="fg" x="-25%" y="-25%" width="150%" height="150%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fgS" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fBox" x="-4%" y="-8%" width="108%" height="116%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <!-- Arrow markers -->
+  <marker id="aData" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0L10 4L0 8z" fill="#38bdf8"/>
+  </marker>
+  <marker id="aSub" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0L10 4L0 8z" fill="#34d399"/>
+  </marker>
+  <marker id="aCom" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0L10 4L0 8z" fill="#a78bfa"/>
+  </marker>
+  <marker id="aTel" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0L10 4L0 8z" fill="#fb923c"/>
+  </marker>
+  <marker id="aSvc" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0L10 4L0 8z" fill="#c084fc"/>
+  </marker>
+
+  <!-- Dot-grid pattern -->
+  <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+    <circle cx="14" cy="14" r=".7" fill="rgba(124,58,237,0.10)"/>
+  </pattern>
+</defs>
+
+<!-- ── BACKGROUND ── -->
+<rect width="1440" height="630" fill="url(#gBg)"/>
+<rect width="1440" height="630" fill="url(#dots)"/>
+
+<!-- ══════════════════════════════════════════
+     EXTERNAL DATA SOURCES  (left)
+══════════════════════════════════════════ -->
+<g id="g-ext-src">
+  <!-- glow layer -->
+  <rect x="18" y="168" width="178" height="168" rx="11" fill="none" stroke="#38bdf8" stroke-width="2" opacity=".15" filter="url(#fBox)"/>
+  <!-- box -->
+  <rect x="18" y="168" width="178" height="168" rx="11" fill="url(#gExt)" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="107" y="204" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="2">EXTERNAL DATA</text>
+  <text x="107" y="220" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="2">SOURCES</text>
+  <line x1="32" y1="232" x2="182" y2="232" stroke="rgba(56,189,248,.2)" stroke-width="1"/>
+  <text x="107" y="252" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● CRM / ERP</text>
+  <text x="107" y="270" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● QuickBooks</text>
+  <text x="107" y="288" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● HR Systems</text>
+  <text x="107" y="306" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● IoT / Sensors</text>
+  <text x="107" y="324" text-anchor="middle" fill="rgba(56,189,248,.4)" font-size="8.5" letter-spacing="1">INTEGRATIONS</text>
+</g>
+
+<!-- ══════════════════════════════════════════
+     EXTERNAL DATA CONSUMERS  (right)
+══════════════════════════════════════════ -->
+<g id="g-ext-con">
+  <rect x="1244" y="168" width="178" height="168" rx="11" fill="none" stroke="#38bdf8" stroke-width="2" opacity=".15" filter="url(#fBox)"/>
+  <rect x="1244" y="168" width="178" height="168" rx="11" fill="url(#gExt)" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="1333" y="204" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="2">EXTERNAL DATA</text>
+  <text x="1333" y="220" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="2">CONSUMERS</text>
+  <line x1="1258" y1="232" x2="1408" y2="232" stroke="rgba(56,189,248,.2)" stroke-width="1"/>
+  <text x="1333" y="252" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● Power BI Reports</text>
+  <text x="1333" y="270" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● Dashboards</text>
+  <text x="1333" y="288" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● REST APIs</text>
+  <text x="1333" y="306" text-anchor="middle" fill="rgba(56,189,248,.65)" font-size="10">● 3rd-party Apps</text>
+  <text x="1333" y="324" text-anchor="middle" fill="rgba(56,189,248,.4)" font-size="8.5" letter-spacing="1">OUTPUTS</text>
+</g>
+
+<!-- ══════════════════════════════════════════
+     CUSTOMER BOX  (large, centre-top)
+     x:238–1202, y:14–400  (w:964 h:386)
+══════════════════════════════════════════ -->
+<g id="g-customer">
+  <!-- outer glow -->
+  <rect x="238" y="14" width="964" height="386" rx="14" fill="none" stroke="#818cf8" stroke-width="2.5" opacity=".2" filter="url(#fBox)"/>
+  <!-- main box -->
+  <rect x="238" y="14" width="964" height="386" rx="14" fill="url(#gCustomer)" stroke="#818cf8" stroke-width="1.8"/>
+
+  <!-- ── title ── -->
+  <text x="720" y="48" text-anchor="middle" fill="#a78bfa" font-size="16" font-weight="800" letter-spacing="5">CUSTOMER</text>
+  <line x1="252" y1="57" x2="1188" y2="57" stroke="#818cf8" stroke-width=".5" opacity=".4"/>
+
+  <!-- ── dept-row label ── -->
+  <text x="720" y="74" text-anchor="middle" fill="rgba(139,92,246,.38)" font-size="8.5" letter-spacing="3">BUSINESS FUNCTIONS</text>
+
+  <!-- OPERATIONS  x:256–430 y:80–148 -->
+  <rect x="256" y="80" width="174" height="68" rx="7" fill="rgba(99,102,241,.14)" stroke="#6366f1" stroke-width=".9"/>
+  <text x="343" y="108" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">OPERATIONS</text>
+  <text x="343" y="124" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">Process · Logistics</text>
+  <text x="343" y="139" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">Workflow Mgmt</text>
+
+  <!-- SALES &amp; MARKETING  x:440–614 -->
+  <rect x="440" y="80" width="174" height="68" rx="7" fill="rgba(99,102,241,.14)" stroke="#6366f1" stroke-width=".9"/>
+  <text x="527" y="103" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">SALES &amp;</text>
+  <text x="527" y="119" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">MARKETING</text>
+  <text x="527" y="139" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">CRM · Campaigns</text>
+
+  <!-- FINANCE  x:624–798 -->
+  <rect x="624" y="80" width="174" height="68" rx="7" fill="rgba(99,102,241,.14)" stroke="#6366f1" stroke-width=".9"/>
+  <text x="711" y="108" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">FINANCE</text>
+  <text x="711" y="124" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">Billing · Reporting</text>
+  <text x="711" y="139" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">Forecasting</text>
+
+  <!-- CUSTOMER SERVICE  x:808–982 -->
+  <rect x="808" y="80" width="174" height="68" rx="7" fill="rgba(99,102,241,.14)" stroke="#6366f1" stroke-width=".9"/>
+  <text x="895" y="103" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">CUSTOMER</text>
+  <text x="895" y="119" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">SERVICE</text>
+  <text x="895" y="139" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">Support · Success</text>
+
+  <!-- HR  x:992–1182 -->
+  <rect x="992" y="80" width="196" height="68" rx="7" fill="rgba(99,102,241,.14)" stroke="#6366f1" stroke-width=".9"/>
+  <text x="1090" y="103" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">HUMAN</text>
+  <text x="1090" y="119" text-anchor="middle" fill="#c7d2fe" font-size="10.5" font-weight="700">RESOURCES</text>
+  <text x="1090" y="139" text-anchor="middle" fill="rgba(199,210,254,.48)" font-size="8.5">People · Talent · L&amp;D</text>
+
+  <!-- ── platform divider ── -->
+  <line x1="252" y1="162" x2="1188" y2="162" stroke="#818cf8" stroke-width=".5" stroke-dasharray="6,4" opacity=".3"/>
+  <text x="720" y="178" text-anchor="middle" fill="rgba(139,92,246,.35)" font-size="8.5" letter-spacing="3">INTELLIGENT PLATFORM</text>
+
+  <!-- ════ MICROSOFT FABRIC  x:256–694 y:184–388 ════ -->
+  <rect x="256" y="184" width="438" height="204" rx="10" fill="url(#gFabric)" stroke="#0078d4" stroke-width="1.4"/>
+
+  <!-- Fabric coloured-tile logo -->
+  <rect x="276" y="202" width="13" height="13" rx="2.5" fill="#0078d4"/>
+  <rect x="291" y="202" width="13" height="13" rx="2.5" fill="#50e6ff"/>
+  <rect x="306" y="202" width="13" height="13" rx="2.5" fill="#773adc"/>
+  <rect x="276" y="217" width="13" height="13" rx="2.5" fill="#008b8b"/>
+  <rect x="291" y="217" width="13" height="13" rx="2.5" fill="#d83b01"/>
+  <rect x="306" y="217" width="13" height="13" rx="2.5" fill="#0078d4"/>
+
+  <text x="330" y="212" fill="#60a5fa" font-size="13.5" font-weight="700">Microsoft Fabric</text>
+  <text x="330" y="228" fill="rgba(96,165,250,.45)" font-size="8.5">Data Platform &amp; Analytics</text>
+
+  <line x1="270" y1="240" x2="686" y2="240" stroke="rgba(0,120,212,.22)" stroke-width="1"/>
+  <text x="471" y="258" text-anchor="middle" fill="rgba(96,165,250,.72)" font-size="9.5">OneLake · Data Integration · Pipelines</text>
+  <text x="471" y="274" text-anchor="middle" fill="rgba(96,165,250,.72)" font-size="9.5">Power BI · Real-time Analytics · Spark</text>
+  <text x="471" y="290" text-anchor="middle" fill="rgba(96,165,250,.72)" font-size="9.5">Data Warehouse · Data Science</text>
+
+  <!-- Fabric tags -->
+  <rect x="270" y="305" width="156" height="24" rx="4" fill="rgba(0,120,212,.18)" stroke="rgba(0,120,212,.38)" stroke-width=".9"/>
+  <text x="348" y="321" text-anchor="middle" fill="#7dd3fc" font-size="8.5" font-weight="600" letter-spacing=".8">OPERATIONAL PROCESSES</text>
+
+  <rect x="436" y="305" width="150" height="24" rx="4" fill="rgba(0,120,212,.18)" stroke="rgba(0,120,212,.38)" stroke-width=".9"/>
+  <text x="511" y="321" text-anchor="middle" fill="#7dd3fc" font-size="8.5" font-weight="600" letter-spacing=".8">FABRIC CONNECTORS</text>
+
+  <rect x="270" y="340" width="316" height="24" rx="4" fill="rgba(0,120,212,.1)" stroke="rgba(0,120,212,.25)" stroke-width=".9"/>
+  <text x="428" y="356" text-anchor="middle" fill="rgba(96,165,250,.5)" font-size="8" letter-spacing="1">MICROSOFT FABRIC INTELLIGENCE LAYER</text>
+
+  <text x="471" y="382" text-anchor="middle" fill="rgba(0,120,212,.28)" font-size="8" letter-spacing="2">FABRIC</text>
+
+  <!-- ════ ANTHROPIC CLAUDE  x:704–1188 y:184–388 ════ -->
+  <rect x="704" y="184" width="484" height="204" rx="10" fill="url(#gClaude)" stroke="#d97706" stroke-width="1.4"/>
+
+  <!-- Claude "A" logo -->
+  <circle cx="732" cy="218" r="17" fill="#d97706"/>
+  <text x="732" y="225" text-anchor="middle" fill="white" font-size="17" font-weight="900" font-family="Georgia,serif">A</text>
+
+  <text x="760" y="211" fill="#fbbf24" font-size="13.5" font-weight="700">Anthropic Claude</text>
+  <text x="760" y="228" fill="rgba(251,191,36,.45)" font-size="8.5">claude-sonnet-4 · claude-opus-4</text>
+
+  <line x1="718" y1="240" x2="1182" y2="240" stroke="rgba(217,119,6,.22)" stroke-width="1"/>
+  <text x="946" y="258" text-anchor="middle" fill="rgba(251,191,36,.72)" font-size="9.5">AI Agents · Reasoning · Process Automation</text>
+  <text x="946" y="274" text-anchor="middle" fill="rgba(251,191,36,.72)" font-size="9.5">Natural Language · Document Intelligence</text>
+  <text x="946" y="290" text-anchor="middle" fill="rgba(251,191,36,.72)" font-size="9.5">Knowledge Extraction · Predictive Insights</text>
+
+  <!-- Claude tags -->
+  <rect x="718" y="305" width="130" height="24" rx="4" fill="rgba(217,119,6,.18)" stroke="rgba(217,119,6,.38)" stroke-width=".9"/>
+  <text x="783" y="321" text-anchor="middle" fill="#fcd34d" font-size="8.5" font-weight="600" letter-spacing=".8">AI WORKFLOWS</text>
+
+  <rect x="858" y="305" width="130" height="24" rx="4" fill="rgba(217,119,6,.18)" stroke="rgba(217,119,6,.38)" stroke-width=".9"/>
+  <text x="923" y="321" text-anchor="middle" fill="#fcd34d" font-size="8.5" font-weight="600" letter-spacing=".8">AGENTIC AI</text>
+
+  <rect x="998" y="305" width="168" height="24" rx="4" fill="rgba(217,119,6,.18)" stroke="rgba(217,119,6,.38)" stroke-width=".9"/>
+  <text x="1082" y="321" text-anchor="middle" fill="#fcd34d" font-size="8.5" font-weight="600" letter-spacing=".8">RAG · INSIGHTS</text>
+
+  <rect x="718" y="340" width="448" height="24" rx="4" fill="rgba(217,119,6,.1)" stroke="rgba(217,119,6,.25)" stroke-width=".9"/>
+  <text x="942" y="356" text-anchor="middle" fill="rgba(251,191,36,.5)" font-size="8" letter-spacing="1">ANTHROPIC CLAUDE AI INTELLIGENCE LAYER</text>
+
+  <text x="946" y="382" text-anchor="middle" fill="rgba(217,119,6,.28)" font-size="8" letter-spacing="2">CLAUDE</text>
+</g>
+
+<!-- ══════════════════════════════════════════
+     MSP BOX  x:450–990 y:432–524
+══════════════════════════════════════════ -->
+<g id="g-msp">
+  <rect x="450" y="432" width="540" height="92" rx="12" fill="none" stroke="#34d399" stroke-width="2" opacity=".18" filter="url(#fBox)"/>
+  <rect x="450" y="432" width="540" height="92" rx="12" fill="url(#gMSP)" stroke="#34d399" stroke-width="1.5"/>
+
+  <!-- Person icon -->
+  <circle cx="496" cy="466" r="10" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="496" y1="476" x2="496" y2="494" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="486" y1="484" x2="506" y2="484" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="496" y1="494" x2="488" y2="506" stroke="#34d399" stroke-width="1.5" opacity=".6"/>
+  <line x1="496" y1="494" x2="504" y2="506" stroke="#34d399" stroke-width="1.5" opacity=".6"/>
+
+  <text x="720" y="468" text-anchor="middle" fill="#34d399" font-size="15" font-weight="800" letter-spacing="5">MSP</text>
+  <text x="720" y="486" text-anchor="middle" fill="rgba(52,211,153,.58)" font-size="10.5" letter-spacing="1">Managed Service Provider</text>
+  <text x="720" y="503" text-anchor="middle" fill="rgba(52,211,153,.38)" font-size="8.5" letter-spacing="1.5">Expert Onboarding · Customisation · Ongoing Support</text>
+
+  <!-- second person icon right -->
+  <circle cx="944" cy="466" r="10" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="944" y1="476" x2="944" y2="494" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="934" y1="484" x2="954" y2="484" stroke="#34d399" stroke-width="1.5"/>
+  <line x1="944" y1="494" x2="936" y2="506" stroke="#34d399" stroke-width="1.5" opacity=".6"/>
+  <line x1="944" y1="494" x2="952" y2="506" stroke="#34d399" stroke-width="1.5" opacity=".6"/>
+</g>
+
+<!-- ══════════════════════════════════════════
+     KHASHMERE BOX  x:450–990 y:558–626
+══════════════════════════════════════════ -->
+<g id="g-khash">
+  <rect x="450" y="558" width="540" height="68" rx="12" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity=".3" filter="url(#fBox)"/>
+  <rect x="450" y="558" width="540" height="68" rx="12" fill="url(#gKhash)" stroke="#a78bfa" stroke-width="1.8"/>
+
+  <!-- K logo badge -->
+  <circle cx="495" cy="592" r="18" fill="url(#gKLogo)" opacity=".95"/>
+  <text x="495" y="599" text-anchor="middle" fill="white" font-size="18" font-weight="900" font-family="Georgia,serif">K</text>
+
+  <text x="720" y="585" text-anchor="middle" fill="#c4b5fd" font-size="16" font-weight="800" letter-spacing="5">KHASHMERE</text>
+  <text x="720" y="604" text-anchor="middle" fill="rgba(196,181,253,.5)" font-size="9.5" letter-spacing="2">Platform Intelligence · AI-Native Infrastructure</text>
+
+  <!-- Person icon right -->
+  <circle cx="955" cy="580" r="9" fill="none" stroke="#a78bfa" stroke-width="1.4"/>
+  <line x1="955" y1="589" x2="955" y2="604" stroke="#a78bfa" stroke-width="1.4"/>
+  <line x1="946" y1="596" x2="964" y2="596" stroke="#a78bfa" stroke-width="1.4"/>
+  <line x1="955" y1="604" x2="948" y2="614" stroke="#a78bfa" stroke-width="1.4" opacity=".6"/>
+  <line x1="955" y1="604" x2="962" y2="614" stroke="#a78bfa" stroke-width="1.4" opacity=".6"/>
+</g>
+
+<!-- ══════════════════════════════════════════
+     FLOW PATHS
+══════════════════════════════════════════ -->
+
+<!-- 1 · DATA IN: Ext Sources → Customer -->
+<path id="p-di" d="M196 252 L238 252"
+  stroke="#38bdf8" stroke-width="2" fill="none" stroke-dasharray="6,3"
+  marker-end="url(#aData)" opacity=".85"/>
+<text x="217" y="244" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="700" letter-spacing=".5">DATA</text>
+
+<!-- 2 · DATA OUT: Customer → Ext Consumers -->
+<path id="p-do" d="M1202 252 L1244 252"
+  stroke="#38bdf8" stroke-width="2" fill="none" stroke-dasharray="6,3"
+  marker-end="url(#aData)" opacity=".85"/>
+<text x="1223" y="244" text-anchor="middle" fill="#38bdf8" font-size="8.5" font-weight="700" letter-spacing=".5">DATA</text>
+
+<!-- 3 · SUBSCRIPTION $: Customer → MSP -->
+<path id="p-sub" d="M720 400 L720 432"
+  stroke="#34d399" stroke-width="2" fill="none" stroke-dasharray="6,3"
+  marker-end="url(#aSub)" opacity=".9"/>
+<text x="742" y="419" fill="#34d399" font-size="11" font-weight="800">$</text>
+<text x="756" y="419" fill="#34d399" font-size="8.5">Subscription</text>
+
+<!-- 4 · COMMISSION %: MSP → Khashmere -->
+<path id="p-com" d="M720 524 L720 558"
+  stroke="#a78bfa" stroke-width="2" fill="none" stroke-dasharray="6,3"
+  marker-end="url(#aCom)" opacity=".9"/>
+<text x="738" y="544" fill="#a78bfa" font-size="11" font-weight="800">%</text>
+<text x="752" y="544" fill="#a78bfa" font-size="8.5">Commission</text>
+
+<!-- 5 · TELEMETRY: Customer → MSP  (left-side arc) -->
+<path id="p-tm" d="M388 400 C360 416 355 440 450 478"
+  stroke="#fb923c" stroke-width="1.6" fill="none" stroke-dasharray="4,3"
+  marker-end="url(#aTel)" opacity=".78"/>
+<text x="344" y="438" text-anchor="middle" fill="#fb923c" font-size="8.5">Telemetry</text>
+<text x="344" y="450" text-anchor="middle" fill="#fb923c" font-size="8.5">/ Alerts</text>
+
+<!-- 6 · TELEMETRY: Customer → Khashmere  (longer left arc) -->
+<path id="p-tk" d="M314 400 C272 448 258 526 450 588"
+  stroke="#fb923c" stroke-width="1.4" fill="none" stroke-dasharray="4,3"
+  marker-end="url(#aTel)" opacity=".58"/>
+
+<!-- 7 · SERVICE: MSP → Customer  (right arc up) -->
+<path id="p-sm" d="M990 465 C1048 430 1110 388 1196 324"
+  stroke="#c084fc" stroke-width="1.6" fill="none" stroke-dasharray="4,3"
+  marker-end="url(#aSvc)" opacity=".78"/>
+<!-- person icon on service arc -->
+<circle cx="1090" cy="393" r="7.5" fill="none" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1090" y1="400" x2="1090" y2="414" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1082" y1="407" x2="1098" y2="407" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1090" y1="414" x2="1083" y2="423" stroke="#c084fc" stroke-width="1.3" opacity=".6"/>
+<line x1="1090" y1="414" x2="1097" y2="423" stroke="#c084fc" stroke-width="1.3" opacity=".6"/>
+<text x="1122" y="408" fill="#c084fc" font-size="8.5">Service</text>
+
+<!-- 8 · SERVICE: Khashmere → Customer  (right arc, longer) -->
+<path id="p-sk" d="M990 584 C1078 542 1148 468 1196 356"
+  stroke="#c084fc" stroke-width="1.4" fill="none" stroke-dasharray="4,3"
+  marker-end="url(#aSvc)" opacity=".6"/>
+<!-- person icon on khashmere service arc -->
+<circle cx="1140" cy="474" r="7.5" fill="none" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1140" y1="481" x2="1140" y2="495" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1132" y1="488" x2="1148" y2="488" stroke="#c084fc" stroke-width="1.3"/>
+<line x1="1140" y1="495" x2="1133" y2="504" stroke="#c084fc" stroke-width="1.3" opacity=".6"/>
+<line x1="1140" y1="495" x2="1147" y2="504" stroke="#c084fc" stroke-width="1.3" opacity=".6"/>
+
+<!-- ══════════════════════════════════════════
+     LEGEND  (bottom-left, clear of boxes)
+══════════════════════════════════════════ -->
+<g transform="translate(18,368)">
+  <rect x="-4" y="-14" width="218" height="158" rx="8"
+    fill="rgba(5,8,26,.82)" stroke="rgba(124,58,237,.22)" stroke-width="1"/>
+  <text x="105" y="2" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="8.5" font-weight="700" letter-spacing="2.5">LEGEND</text>
+
+  <!-- Data -->
+  <line x1="0" y1="17" x2="28" y2="17" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="14" cy="17" r="4" fill="white" filter="url(#fg)"/>
+  <text x="34" y="21" fill="rgba(255,255,255,.62)" font-size="9">Data Flow</text>
+
+  <!-- Subscription -->
+  <line x1="0" y1="37" x2="28" y2="37" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="14" cy="37" r="4" fill="#34d399" filter="url(#fg)"/>
+  <text x="34" y="41" fill="rgba(255,255,255,.62)" font-size="9">Subscription ($)</text>
+
+  <!-- Commission -->
+  <line x1="0" y1="57" x2="28" y2="57" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="14" cy="57" r="4" fill="#a78bfa" filter="url(#fg)"/>
+  <text x="34" y="61" fill="rgba(255,255,255,.62)" font-size="9">Commission (%)</text>
+
+  <!-- Telemetry -->
+  <line x1="0" y1="77" x2="28" y2="77" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="14" cy="77" r="4" fill="#fb923c" filter="url(#fg)"/>
+  <text x="34" y="81" fill="rgba(255,255,255,.62)" font-size="9">Telemetry / Notifications</text>
+
+  <!-- Service -->
+  <line x1="0" y1="97" x2="28" y2="97" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="14" cy="97" r="4" fill="#c084fc" filter="url(#fg)"/>
+  <!-- mini person icon -->
+  <circle cx="130" cy="93" r="4.5" fill="none" stroke="#c084fc" stroke-width="1.1"/>
+  <line x1="130" y1="97" x2="130" y2="106" stroke="#c084fc" stroke-width="1.1"/>
+  <line x1="125" y1="101" x2="135" y2="101" stroke="#c084fc" stroke-width="1.1"/>
+  <text x="34" y="101" fill="rgba(255,255,255,.62)" font-size="9">Managed Service</text>
+
+  <!-- White ball note -->
+  <circle cx="14" cy="119" r="5" fill="white" opacity=".92" filter="url(#fg)"/>
+  <text x="34" y="123" fill="rgba(255,255,255,.45)" font-size="8.5">= packet in motion</text>
+
+  <!-- version -->
+  <text x="105" y="140" text-anchor="middle" fill="rgba(124,58,237,.3)" font-size="7.5" letter-spacing="1">KHASHMERE © 2026</text>
+</g>
+
+<!-- ══════════════════════════════════════════
+     ANIMATED BALLS  (positioned by JS)
+══════════════════════════════════════════ -->
+<!-- DATA IN -->
+<circle class="ball" id="b-di-0" r="5.5" fill="white" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-di-1" r="3.5" fill="rgba(200,240,255,.85)" opacity="0" filter="url(#fg)"/>
+<!-- DATA OUT -->
+<circle class="ball" id="b-do-0" r="5.5" fill="white" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-do-1" r="3.5" fill="rgba(200,240,255,.85)" opacity="0" filter="url(#fg)"/>
+<!-- SUBSCRIPTION -->
+<circle class="ball" id="b-sub-0" r="5.5" fill="#34d399" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-sub-1" r="3.5" fill="#86efac" opacity="0" filter="url(#fg)"/>
+<!-- COMMISSION -->
+<circle class="ball" id="b-com-0" r="5.5" fill="#a78bfa" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-com-1" r="3.5" fill="#c4b5fd" opacity="0" filter="url(#fg)"/>
+<!-- TELEMETRY MSP -->
+<circle class="ball" id="b-tm-0" r="4.5" fill="#fb923c" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-tm-1" r="3" fill="#fdba74" opacity="0" filter="url(#fg)"/>
+<!-- TELEMETRY KHASHMERE -->
+<circle class="ball" id="b-tk-0" r="4" fill="#fb923c" opacity="0" filter="url(#fg)"/>
+<!-- SERVICE MSP-->
+<circle class="ball" id="b-sm-0" r="4.5" fill="#c084fc" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-sm-1" r="3" fill="white" opacity="0" filter="url(#fg)"/>
+<!-- SERVICE KHASHMERE -->
+<circle class="ball" id="b-sk-0" r="4.5" fill="#c084fc" opacity="0" filter="url(#fgS)"/>
+<circle class="ball" id="b-sk-1" r="3" fill="white" opacity="0" filter="url(#fg)"/>
+
+</svg>
+</div>
+
+<div class="controls">
+  <button class="play-btn" id="playBtn">
+    <svg id="playIcon" width="16" height="16" viewBox="0 0 16 16"></svg>
+  </button>
+  <div class="timeline">
+    <span class="t-label" id="tCur">0:00</span>
+    <input type="range" class="seek" id="seekBar" min="0" max="10000" value="0"/>
+    <span class="t-label">0:30</span>
+  </div>
+  <button class="speed-btn" id="speedBtn">1×</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+// ── Constants ──
+const TOTAL = 30;        // cycle length in seconds
+const SPEEDS  = [0.25, 0.5, 1, 2, 4];
+const S_LABEL = ['¼×',  '½×', '1×', '2×', '4×'];
+
+// ── State ──
+let playing = true;
+let sIdx    = 2;         // speed index
+let prog    = 0;         // 0–1 over TOTAL
+let lastTs  = null;
+
+// ── DOM ──
+const playBtn  = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const seekBar  = document.getElementById('seekBar');
+const tCur     = document.getElementById('tCur');
+const speedBtn = document.getElementById('speedBtn');
+
+// ── Flow config ──
+// pathId, balls[], relSpeed[], offsets[]
+const FLOWS = [
+  { pid:'p-di',  balls:['b-di-0','b-di-1'],   rs:[2.0,2.0],   os:[0,   0.5] },
+  { pid:'p-do',  balls:['b-do-0','b-do-1'],   rs:[2.0,2.0],   os:[0.25,0.75]},
+  { pid:'p-sub', balls:['b-sub-0','b-sub-1'], rs:[1.0,1.0],   os:[0,   0.5] },
+  { pid:'p-com', balls:['b-com-0','b-com-1'], rs:[1.0,1.0],   os:[0.2, 0.7] },
+  { pid:'p-tm',  balls:['b-tm-0','b-tm-1'],   rs:[1.4,1.4],   os:[0,   0.5] },
+  { pid:'p-tk',  balls:['b-tk-0'],             rs:[0.9],        os:[0.3]      },
+  { pid:'p-sm',  balls:['b-sm-0','b-sm-1'],   rs:[0.8,0.8],   os:[0,   0.5] },
+  { pid:'p-sk',  balls:['b-sk-0','b-sk-1'],   rs:[0.7,0.7],   os:[0.2, 0.7] },
+];
+
+// Resolve elements & cache path lengths
+const flows = FLOWS.map(f => {
+  const pe = document.getElementById(f.pid);
+  return {
+    pe,
+    len: pe ? pe.getTotalLength() : 0,
+    balls: f.balls.map(id => document.getElementById(id)),
+    rs: f.rs,
+    os: f.os,
+  };
+});
+
+// ── Helpers ──
+function fmtTime(s){
+  const m = Math.floor(s/60);
+  return `${m}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+}
+
+function setIcon(isPlay){
+  if(isPlay){
+    // pause bars
+    playIcon.innerHTML='<rect x="2" y="2" width="4" height="12" fill="white" rx="1"/><rect x="10" y="2" width="4" height="12" fill="white" rx="1"/>';
+  } else {
+    // play triangle
+    playIcon.innerHTML='<polygon points="4,2 14,8 4,14" fill="white"/>';
+  }
+}
+
+function syncSeek(){
+  const p=(prog*100).toFixed(2)+'%';
+  seekBar.style.background=`linear-gradient(90deg,#7c3aed ${p},rgba(124,58,237,.18) ${p})`;
+}
+
+// ── Animation loop ──
+function tick(ts){
+  if(lastTs!==null && playing){
+    const dt = Math.min((ts-lastTs)/1000, 0.1);
+    prog += dt * SPEEDS[sIdx] / TOTAL;
+    if(prog>1) prog -= 1;
+    seekBar.value = Math.round(prog*10000);
+    tCur.textContent = fmtTime(prog*TOTAL);
+    syncSeek();
+  }
+  lastTs = ts;
+
+  // move balls
+  flows.forEach(f=>{
+    if(!f.pe || f.len===0) return;
+    f.balls.forEach((b,i)=>{
+      if(!b) return;
+      const t = (((prog * f.rs[i]) + f.os[i]) % 1 + 1) % 1;
+      const pt = f.pe.getPointAtLength(t * f.len);
+      b.setAttribute('cx', pt.x);
+      b.setAttribute('cy', pt.y);
+      b.setAttribute('opacity','1');
+    });
+  });
+
+  requestAnimationFrame(tick);
+}
+
+// ── Controls ──
+playBtn.addEventListener('click',()=>{
+  playing=!playing;
+  if(playing) lastTs=null;
+  setIcon(playing);
+});
+
+seekBar.addEventListener('input',()=>{
+  prog = seekBar.value/10000;
+  tCur.textContent = fmtTime(prog*TOTAL);
+  syncSeek();
+  lastTs=null;
+});
+
+speedBtn.addEventListener('click',()=>{
+  sIdx=(sIdx+1)%SPEEDS.length;
+  speedBtn.textContent=S_LABEL[sIdx];
+});
+
+// ── Kick off ──
+setIcon(true);
+syncSeek();
+requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
