@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khashmere — How It Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep-navy:#1f2d3a;
+  --warm-cream:#f0ece8;
+  --warm-gold:#d4af82;
+  --cream-soft:rgba(240,236,232,.55);
+  --gold-soft:rgba(212,175,130,.22);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  background:linear-gradient(160deg,#3d4f61 0%,#2a3a4a 50%,#1f2d3a 100%);
+  color:var(--warm-cream);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:radial-gradient(circle,rgba(212,175,130,.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0;
+}
+
+/* ── HEADER ── */
+header{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;
+  gap:24px;
+}
+.brand{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.brand-mark{width:26px;height:26px;}
+.logo{font-size:15px;font-weight:500;letter-spacing:3px;color:var(--warm-cream);}
+.brand-sep{width:1px;height:16px;background:rgba(240,236,232,.18);}
+.brand-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream-soft);}
+.case-eyebrow{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--warm-gold);opacity:.8;
+  text-align:right;
+}
+
+/* ── STAGE ── */
+.stage{
+  position:relative;z-index:1;
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 40px 16px;
+  min-height:0;
+}
+
+/* ── ECOSYSTEM GRID ── */
+.ecosystem{
+  display:grid;
+  grid-template-columns:200px minmax(0,1fr) 200px;
+  grid-template-rows:auto auto;
+  gap:20px 18px;
+  width:100%;
+  max-width:1280px;
+  align-items:stretch;
+}
+
+.region{
+  position:relative;
+  border:1px solid var(--gold-soft);
+  border-radius:12px;
+  background:linear-gradient(160deg,rgba(61,79,97,.18) 0%,rgba(31,45,58,.45) 100%);
+  padding:18px 18px 16px;
+  transition:opacity .7s ease,
+             border-color .7s ease,
+             box-shadow .7s ease,
+             transform .7s cubic-bezier(.2,.7,.2,1);
+}
+
+/* default dim, then spotlight per step */
+.ecosystem[data-step] .region{ opacity:.22; }
+.ecosystem[data-step="1"] .region[data-region="sources"],
+.ecosystem[data-step="2"] .region[data-region="fabric"],
+.ecosystem[data-step="3"] .region[data-region="claude"],
+.ecosystem[data-step="4"] .region[data-region="consumers"],
+.ecosystem[data-step="5"] .region[data-region="msp"],
+.ecosystem[data-step="5"] .region[data-region="khash"]{
+  opacity:1;
+  border-color:var(--warm-gold);
+  box-shadow:0 0 36px rgba(212,175,130,.18),
+             inset 0 0 0 1px rgba(212,175,130,.35);
+}
+
+/* customer + platform are containers — they brighten when something inside is lit */
+.ecosystem[data-step="2"] .customer,
+.ecosystem[data-step="3"] .customer{ opacity:1; }
+.ecosystem[data-step="2"] .platform-frame,
+.ecosystem[data-step="3"] .platform-frame{ opacity:1; border-color:rgba(212,175,130,.35); }
+.ecosystem[data-step="2"] .platform-frame .region[data-region="claude"],
+.ecosystem[data-step="3"] .platform-frame .region[data-region="fabric"]{ opacity:.35; }
+
+/* ── REGION INTERNALS ── */
+.region-title{
+  font-size:11px;font-weight:500;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--warm-gold);
+  line-height:1.5;
+  margin-bottom:10px;
+}
+.region-divider{
+  height:1px;background:rgba(212,175,130,.18);margin:10px 0 12px;
+}
+.bullets{
+  list-style:none;
+  display:flex;flex-direction:column;gap:7px;
+}
+.bullets li{
+  position:relative;
+  font-size:12px;line-height:1.45;
+  color:rgba(240,236,232,.78);
+  padding-left:14px;
+}
+.bullets li::before{
+  content:"";
+  position:absolute;left:0;top:7px;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--warm-gold);opacity:.7;
+}
+.region-foot{
+  position:absolute;left:0;right:0;bottom:12px;
+  text-align:center;
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(212,175,130,.45);
+}
+
+/* ── CUSTOMER ENCLOSURE ── */
+.customer{
+  grid-column:2;grid-row:1;
+  position:relative;
+  border:1px solid var(--gold-soft);
+  border-radius:14px;
+  padding:18px 20px 20px;
+  transition:opacity .7s ease,border-color .7s ease;
+}
+.customer-head{
+  text-align:center;
+  font-size:13px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--warm-gold);
+  margin-bottom:14px;
+}
+.section-label{
+  text-align:center;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(212,175,130,.5);
+  margin:6px 0 10px;
+}
+
+/* business functions — quiet inline labels */
+.functions{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:6px 22px;
+  margin-bottom:18px;
+  padding:0 12px;
+}
+.functions span{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(240,236,232,.55);
+  white-space:nowrap;
+}
+
+/* intelligent platform sub-frame */
+.platform-frame{
+  border:1px solid var(--gold-soft);
+  border-radius:10px;
+  padding:14px 14px 12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  transition:opacity .7s ease,border-color .7s ease;
+  margin-top:6px;
+}
+/* the platform sub-regions don't need their own outer card style — flatten */
+.platform-frame .region{
+  background:transparent;
+  border:1px solid rgba(212,175,130,.18);
+  border-radius:8px;
+  padding:14px 14px 12px;
+}
+.platform-sub{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--cream-soft);
+}
+
+/* ── MSP + KHASHMERE STACK ── */
+.partnership{
+  grid-column:1 / -1;grid-row:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;
+  padding:0;border:none;background:none;
+  opacity:1!important;
+}
+.lane{
+  width:100%;max-width:520px;
+  border:1px solid var(--gold-soft);
+  border-radius:10px;
+  padding:12px 20px;
+  background:linear-gradient(160deg,rgba(61,79,97,.18) 0%,rgba(31,45,58,.45) 100%);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  text-align:center;
+}
+.lane-title{
+  font-size:13px;letter-spacing:3.5px;text-transform:uppercase;font-weight:500;
+  color:var(--warm-cream);
+}
+.lane-sub{
+  font-size:11px;line-height:1.5;
+  color:rgba(240,236,232,.65);
+}
+.lane em{font-style:italic;color:var(--warm-gold);}
+
+.ecosystem[data-step] .lane{ opacity:.22; transition:opacity .7s ease,border-color .7s ease,box-shadow .7s ease; }
+.ecosystem[data-step="5"] .lane{
+  opacity:1;
+  border-color:var(--warm-gold);
+  box-shadow:0 0 36px rgba(212,175,130,.18),
+             inset 0 0 0 1px rgba(212,175,130,.35);
+}
+
+/* ── RELATIONSHIP CONNECTORS (Step 5) ── */
+.link{
+  position:relative;
+  height:30px;
+  margin:0 auto;
+  width:320px;max-width:80%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  transition:opacity .7s ease;
+  pointer-events:none;
+}
+.ecosystem[data-step="5"] .link{ opacity:1; }
+.link::before{
+  content:"";
+  position:absolute;
+  left:50%;top:0;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,
+    rgba(212,175,130,.05) 0%,
+    rgba(212,175,130,.55) 35%,
+    rgba(212,175,130,.55) 65%,
+    rgba(212,175,130,.05) 100%);
+}
+.link-labels{
+  position:relative;
+  display:flex;align-items:center;gap:14px;
+  background:var(--deep-navy);
+  padding:0 14px;
+  z-index:1;
+}
+.link-labels span{
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;
+  white-space:nowrap;
+}
+.link-labels .down{ color:var(--warm-gold); }
+.link-labels .up{ color:var(--cream-soft); }
+.link-labels .sep{
+  color:rgba(212,175,130,.35);
+  font-size:11px;letter-spacing:0;
+}
+
+/* ── CAPTION ── */
+.caption{
+  width:100%;max-width:720px;
+  text-align:center;
+  min-height:88px;
+  margin-bottom:28px;
+}
+.caption .step-label{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--warm-gold);opacity:.75;
+  margin-bottom:10px;
+}
+.caption h2{
+  font-size:22px;font-weight:400;line-height:1.5;
+  color:var(--warm-cream);
+}
+.caption h2 em{font-style:italic;color:var(--warm-gold);}
+.caption-anim{animation:fade .6s ease;}
+@keyframes fade{
+  from{opacity:0;transform:translateY(4px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ── CONTROLS ── */
+.controls{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  gap:24px;
+  padding:16px 40px 28px;
+}
+.nav-btn{
+  background:transparent;
+  border:1px solid rgba(240,236,232,.25);
+  color:var(--warm-cream);
+  font-family:inherit;font-size:11px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:11px 22px;
+  cursor:pointer;
+  border-radius:2px;
+  transition:border-color .3s ease,color .3s ease;
+}
+.nav-btn:hover:not(:disabled){border-color:var(--warm-gold);color:var(--warm-gold);}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+.dots{display:flex;align-items:center;gap:12px;}
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(240,236,232,.25);border:none;cursor:pointer;padding:0;
+  transition:background .3s ease,transform .3s ease,box-shadow .3s ease;
+}
+.dot:hover{background:rgba(240,236,232,.5);}
+.dot.is-active{
+  background:var(--warm-gold);
+  transform:scale(1.4);
+  box-shadow:0 0 12px rgba(212,175,130,.6);
+}
+.step-counter{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--cream-soft);
+  min-width:48px;text-align:center;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1100px){
+  .ecosystem{grid-template-columns:170px minmax(0,1fr) 170px;}
+  .functions{gap:6px 16px;}
+}
+@media (max-width:880px){
+  .ecosystem{grid-template-columns:1fr;grid-template-rows:auto auto auto auto;}
+  .region[data-region="sources"]{grid-column:1;grid-row:1;}
+  .customer{grid-column:1;grid-row:2;}
+  .region[data-region="consumers"]{grid-column:1;grid-row:3;}
+  .partnership{grid-column:1;grid-row:4;}
+  .platform-frame{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="-11 -11 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="-5" y1="-5" x2="6" y2="-7" stroke="#d4af82" stroke-width=".9" opacity=".4"/>
+      <line x1="6" y1="-7" x2="4" y2="5" stroke="#d4af82" stroke-width=".9" opacity=".4"/>
+      <line x1="4" y1="5" x2="-5" y2="6" stroke="#d4af82" stroke-width=".9" opacity=".3"/>
+      <line x1="-5" y1="-5" x2="4" y2="5" stroke="#d4af82" stroke-width=".9" opacity=".25"/>
+      <circle cx="-5" cy="-5" r="2.4" fill="#d4af82"/>
+      <circle cx="6" cy="-7" r="1.7" fill="#d4af82" opacity=".75"/>
+      <circle cx="4" cy="5" r="2.8" fill="#d4af82"/>
+      <circle cx="-5" cy="6" r="1.4" fill="#d4af82" opacity=".6"/>
+    </svg>
+    <span class="logo">KHASHMERE</span>
+    <div class="brand-sep"></div>
+    <span class="brand-sub">How It Works</span>
+  </div>
+  <div class="case-eyebrow">
+    Platform Architecture
+  </div>
+</header>
+
+<main class="stage">
+
+  <div class="caption" id="caption" aria-live="polite"></div>
+
+  <div class="ecosystem" id="ecosystem" data-step="1">
+
+    <!-- ── LEFT: External Data Sources ── -->
+    <section class="region" data-region="sources">
+      <div class="region-title">External<br>Data Sources</div>
+      <div class="region-divider"></div>
+      <ul class="bullets">
+        <li>CRM</li>
+        <li>ERP</li>
+        <li>Finance</li>
+        <li>IoT &amp; Telemetry</li>
+      </ul>
+      <p class="region-foot">Integrations</p>
+    </section>
+
+    <!-- ── MIDDLE: Customer Enclosure ── -->
+    <section class="customer">
+      <div class="customer-head">Customer</div>
+      <div class="section-label">Business Functions</div>
+      <div class="functions">
+        <span>Operations</span>
+        <span>Sales &amp; Marketing</span>
+        <span>Finance</span>
+        <span>Customer Service</span>
+        <span>Human Resources</span>
+      </div>
+      <div class="section-label">Intelligent Platform</div>
+      <div class="platform-frame">
+        <section class="region" data-region="fabric">
+          <div class="region-title">Microsoft Fabric</div>
+          <div class="platform-sub">Data Platform &amp; Analytics</div>
+        </section>
+        <section class="region" data-region="claude">
+          <div class="region-title">Anthropic Claude</div>
+          <div class="platform-sub">Agentic AI</div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ── RIGHT: External Data Consumers ── -->
+    <section class="region" data-region="consumers">
+      <div class="region-title">External<br>Data Consumers</div>
+      <div class="region-divider"></div>
+      <ul class="bullets">
+        <li>Reports</li>
+        <li>Dashboards</li>
+        <li>Notifications</li>
+        <li>Interfaces</li>
+      </ul>
+      <p class="region-foot">Outputs</p>
+    </section>
+
+    <!-- ── BOTTOM: MSP + Khashmere stacked partnership ── -->
+    <section class="partnership">
+
+      <!-- Customer ↓ MSP relationship -->
+      <div class="link" aria-hidden="true">
+        <div class="link-labels">
+          <span class="down">↓ Subscription</span>
+          <span class="sep">·</span>
+          <span class="up">Service ↑</span>
+        </div>
+      </div>
+
+      <div class="lane region" data-region="msp">
+        <span class="lane-title">MSP</span>
+        <p class="lane-sub">Managed Service Provider — onboarding, customisation, ongoing support. <em>Keeps the client relationship.</em></p>
+      </div>
+
+      <!-- MSP ↓ Khashmere relationship -->
+      <div class="link" aria-hidden="true">
+        <div class="link-labels">
+          <span class="down">↓ Subscription</span>
+          <span class="sep">·</span>
+          <span class="up">AI &amp; Data Foundation ↑</span>
+        </div>
+      </div>
+
+      <div class="lane region" data-region="khash">
+        <span class="lane-title">Khashmere</span>
+        <p class="lane-sub">Elite, fractional AI &amp; data services. <em>Builds and runs the foundation underneath.</em></p>
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<div class="controls">
+  <button class="nav-btn" id="prevBtn" type="button">‹ Prev</button>
+  <div class="dots" role="tablist" aria-label="Pipeline steps">
+    <button class="dot" type="button" data-step="1" aria-label="Step 1: External sources"></button>
+    <button class="dot" type="button" data-step="2" aria-label="Step 2: Microsoft Fabric"></button>
+    <button class="dot" type="button" data-step="3" aria-label="Step 3: Anthropic Claude"></button>
+    <button class="dot" type="button" data-step="4" aria-label="Step 4: External consumers"></button>
+    <button class="dot" type="button" data-step="5" aria-label="Step 5: MSP and Khashmere"></button>
+  </div>
+  <span class="step-counter" id="stepCounter">1 / 5</span>
+  <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  const STEPS = [
+    {
+      label: 'Step 1 — Sources',
+      title: '<em>External data</em> — what your client already runs on.'
+    },
+    {
+      label: 'Step 2 — Unify',
+      title: 'Data <em>unified</em> at <em>Microsoft Fabric.</em>'
+    },
+    {
+      label: 'Step 3 — Reason',
+      title: 'Data <em>enriched</em> and <em>reasoned</em> through <em>Anthropic Claude.</em>'
+    },
+    {
+      label: 'Step 4 — Deliver',
+      title: 'Delivered back into the <em>tools they already use.</em>'
+    },
+    {
+      label: 'Step 5 — The Partnership',
+      title: 'You sell our foundation as <em>your service.</em> We’re the <em>vendor</em> underneath.'
+    }
+  ];
+
+  const eco       = document.getElementById('ecosystem');
+  const caption   = document.getElementById('caption');
+  const prevBtn   = document.getElementById('prevBtn');
+  const nextBtn   = document.getElementById('nextBtn');
+  const counter   = document.getElementById('stepCounter');
+  const dots      = document.querySelectorAll('.dot');
+
+  let current = 1;
+
+  function render(step){
+    current = Math.max(1, Math.min(STEPS.length, step));
+    eco.setAttribute('data-step', String(current));
+
+    dots.forEach(d => {
+      const s = parseInt(d.dataset.step, 10);
+      d.classList.toggle('is-active', s === current);
+      d.setAttribute('aria-selected', s === current ? 'true' : 'false');
+    });
+
+    const data = STEPS[current - 1];
+    caption.innerHTML = `
+      <div class="caption-anim">
+        <p class="step-label">${data.label}</p>
+        <h2>${data.title}</h2>
+      </div>`;
+
+    counter.textContent = `${current} / ${STEPS.length}`;
+    prevBtn.disabled = current === 1;
+    nextBtn.disabled = current === STEPS.length;
+  }
+
+  prevBtn.addEventListener('click', () => render(current - 1));
+  nextBtn.addEventListener('click', () => render(current + 1));
+  dots.forEach(d => d.addEventListener('click', () => render(parseInt(d.dataset.step, 10))));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); render(current + 1); }
+    else if (e.key === 'ArrowLeft')              { e.preventDefault(); render(current - 1); }
+    else if (e.key >= '1' && e.key <= '5')       { render(parseInt(e.key, 10)); }
+  });
+
+  render(1);
+})();
+</script>
+</body>
+</html>
