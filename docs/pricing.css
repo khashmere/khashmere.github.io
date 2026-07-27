@@ -338,25 +338,6 @@
   opacity: 1;
 }
 
-.cta-button {
-  display: inline-block;
-  padding: 12px 28px;
-  border: 1px solid rgba(240, 236, 232, 0.25);
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--warm-cream);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.cta-button:hover {
-  background: rgba(240, 236, 232, 0.1);
-  border-color: rgba(240, 236, 232, 0.5);
-}
-
 /* Responsive Design */
 @media (max-width: 900px) {
   .pricing-cards {
@@ -431,13 +412,11 @@
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .pricing-card,
-  .card-cta,
-  .cta-button {
+  .card-cta {
     transition: none;
   }
 }
 
-.card-cta:focus-visible,
-.cta-button:focus-visible {
+.card-cta:focus-visible {
   outline-offset: 2px;
 }

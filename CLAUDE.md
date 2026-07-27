@@ -6,7 +6,25 @@ Minimal, warm, approachable website for AI/data platform. **Core message**: "I c
 
 IMPORTANT: Vanilla HTML/CSS/JavaScript only. No frameworks. Production-grade, semantic HTML, CSS variables, mobile-first responsive design.
 
+## Site Structure (pages live in `docs/`)
+
+The site is **MSP-focused**: the homepage targets MSPs directly.
+
+- **`index.html`** — the homepage. MSP-targeted. Hero: "Turn AI & Data into your *next managed service*" + "Who is Khashmere" block, followed by MSP pain points, Our Approach, The Foundation, and team/CTA sections.
+- **`general.html`** — the ORIGINAL general-audience homepage, preserved in full and **unlinked** (nothing in nav points to it). Hero: "Elite, fractional AI & data services for your hardest business problems" + general-audience pain points. Keep this intact — it's the archived general version to reattach to nav when the business grows. Do NOT delete.
+- **`msp.html`** — older MSP page, now **orphaned** (not in nav). Byte-for-byte identical to `index.html` except an older hero (no "Who is Khashmere" block). Left as-is per owner's decision.
+- **`pricing.html`**, **`contact.html`** — linked in nav.
+
+Nav (top-right) is **Pricing** and **Contact Us** only. The "FOR MSPs" nav item was removed from all live pages (index, pricing, contact, msp) since the whole homepage now targets MSPs. `general.html` still contains the old nav (it's an untouched archive).
+
+Hero "Who is Khashmere" block styles: `.hero-who-eyebrow` / `.hero-who` in `styles.css`.
+
 ## Design Specifications
+
+> **Canonical brand spec:** `khashmere-brand.md` is the source of truth for brand voice, values, target audience (MSPs), and the full visual identity (typography, CTA variants, section principles). Keep the specs below in sync with it rather than duplicating detail.
+
+### Fonts
+DM Sans is loaded via **Google Fonts** in every page's `<head>` (preconnect + `css2?family=DM+Sans...` link). Do not self-host — the empty `fonts-dm-sans/` folder is unused.
 
 ### Layout
 - Off-center asymmetric: Hero content LEFT, thread-constellation visual RIGHT

@@ -4,7 +4,7 @@
     {
       "name": "Khashmere Website (docs)",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "/Users/linhphan/Documents/khashmere-website/docs", "-p", "3000", "--no-clipboard"],
+      "runtimeArgs": ["serve", "/Users/linhphan/Documents/Khashmere/khashmere-website/docs", "-p", "3000", "--no-clipboard"],
       "port": 3000
     }
   ]
