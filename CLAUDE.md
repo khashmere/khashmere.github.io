@@ -11,9 +11,14 @@ IMPORTANT: Vanilla HTML/CSS/JavaScript only. No frameworks. Production-grade, se
 The site is **MSP-focused**: the homepage targets MSPs directly.
 
 - **`index.html`** — the homepage. MSP-targeted. Hero: "Turn AI & Data into your *next managed service*" + "Who is Khashmere" block, followed by MSP pain points, Our Approach, The Foundation, and team/CTA sections.
-- **`general.html`** — the ORIGINAL general-audience homepage, preserved in full and **unlinked** (nothing in nav points to it). Hero: "Elite, fractional AI & data services for your hardest business problems" + general-audience pain points. Keep this intact — it's the archived general version to reattach to nav when the business grows. Do NOT delete.
-- **`msp.html`** — older MSP page, now **orphaned** (not in nav). Byte-for-byte identical to `index.html` except an older hero (no "Who is Khashmere" block). Left as-is per owner's decision.
-- **`pricing.html`**, **`contact.html`** — linked in nav.
+- **`pricing.html`**, **`contact.html`** — the only other live pages, linked in nav.
+
+### Archived pages (`../archive/`, outside `docs/` — NOT served, `/msp` and `/general` do not resolve)
+
+GitHub Pages only publishes `docs/`, so anything in `archive/` is kept in the repo but has no URL. Do NOT delete these.
+
+- **`archive/general.html`** — the ORIGINAL general-audience homepage, preserved in full. Hero: "Elite, fractional AI & data services for your hardest business problems" + general-audience pain points. The archived general version to reattach (move back into `docs/` + add a nav link) when the business grows.
+- **`archive/msp.html`** — the old MSP page (own hero, "Introducing Khashmere" + "For MSPs: Elite, fractional…"). Superseded by the MSP-focused homepage; kept for reference.
 
 Nav (top-right) is **Pricing** and **Contact Us** only. The "FOR MSPs" nav item was removed from all live pages (index, pricing, contact, msp) since the whole homepage now targets MSPs. `general.html` still contains the old nav (it's an untouched archive).
 

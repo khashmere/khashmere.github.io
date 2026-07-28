@@ -293,11 +293,11 @@ body.menu-open {
   color: var(--deep-navy);
   padding: 14px 32px;
   font-size: 13px;
-  transition: opacity 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .cta.hero-cta:hover {
-  opacity: 0.85;
+  background: #c8a074;
 }
 
 .cta {
