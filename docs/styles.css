@@ -322,10 +322,28 @@ body.menu-open {
 /* Brand Visual - Right side */
 .landing-brand-visual {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+/* Tagline beneath the constellation visual */
+.visual-tagline {
+  margin-top: -16px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--warm-cream);
+  opacity: 0.55;
+}
+
+.visual-tagline em {
+  font-style: italic;
+  color: var(--warm-gold);
 }
 
 .brand-logo-large {

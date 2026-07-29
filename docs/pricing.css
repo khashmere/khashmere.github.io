@@ -245,6 +245,11 @@
   background: rgba(240, 236, 232, 0.05);
 }
 
+/* Row sharing rowspan cells with the row above — keep background seamless */
+.comparison-table tbody tr.row-merged {
+  background: transparent;
+}
+
 .feature-name {
   text-align: left;
   color: var(--warm-cream);
