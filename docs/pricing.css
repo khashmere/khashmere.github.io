@@ -130,6 +130,20 @@
   margin-top: 8px;
 }
 
+.tier-inherits {
+  font-size: 13px;
+  color: var(--warm-cream);
+  opacity: 0.55;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.tier-inherits em {
+  font-style: italic;
+  color: var(--warm-gold);
+  opacity: 1;
+}
+
 .card-includes {
   list-style: none;
   flex-grow: 1;
@@ -225,7 +239,7 @@
 }
 
 .comparison-table th.feature-col {
-  text-align: left;
+  text-align: center;
   width: 40%;
 }
 
@@ -245,9 +259,24 @@
   background: rgba(240, 236, 232, 0.05);
 }
 
-/* Row sharing rowspan cells with the row above — keep background seamless */
-.comparison-table tbody tr.row-merged {
-  background: transparent;
+/* Data engineering + AI advisory pair: normal alternating row colors,
+   but no divider line between the two rows */
+.comparison-table tbody tr.row-merged-top td {
+  border-bottom: none;
+}
+
+/* Shared hours value sits at the junction of the two paired rows */
+.comparison-table td.hours-shared {
+  position: relative;
+}
+
+.comparison-table td.hours-shared .value {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(50%);
+  text-align: center;
 }
 
 .feature-name {
@@ -412,6 +441,7 @@
   .feature-desc {
     font-size: 10px;
   }
+
 }
 
 /* Accessibility */
