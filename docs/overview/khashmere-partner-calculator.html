@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khashmere Partner Calculator</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F4F1EC;
+    --surface: #FFFFFF;
+    --surface-sunk: #EDE8E1;
+    --ink: #1F2D3A;
+    --ink-soft: #5E6670;
+    --ink-faint: #8A8880;
+    --line: #DED7CD;
+    --line-strong: #C9C0B3;
+    --navy: #1F2D3A;
+    --navy-text: #F0ECE8;
+    --gold: #D4AF82;
+    --gold-deep: #8F6522;
+    --gold-soft: #F3E6D2;
+    --focus: #1F2D3A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #141C24;
+      --surface: #1C2630;
+      --surface-sunk: #17202A;
+      --ink: #F0ECE8;
+      --ink-soft: #A5ADB7;
+      --ink-faint: #7C848E;
+      --line: #2C3A48;
+      --line-strong: #3C4C5C;
+      --navy: #24333F;
+      --navy-text: #F0ECE8;
+      --gold: #D4AF82;
+      --gold-deep: #E6CBA3;
+      --gold-soft: #2A2A24;
+      --focus: #D4AF82;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #141C24;
+    --surface: #1C2630;
+    --surface-sunk: #17202A;
+    --ink: #F0ECE8;
+    --ink-soft: #A5ADB7;
+    --ink-faint: #7C848E;
+    --line: #2C3A48;
+    --line-strong: #3C4C5C;
+    --navy: #24333F;
+    --navy-text: #F0ECE8;
+    --gold: #D4AF82;
+    --gold-deep: #E6CBA3;
+    --gold-soft: #2A2A24;
+    --focus: #D4AF82;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 36px 56px; }
+
+  /* ---------- masthead ---------- */
+  .masthead { border-bottom: 1px solid var(--line-strong); padding-bottom: 18px; margin-bottom: 30px; }
+  .wordmark {
+    font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); margin: 0;
+  }
+  .wordmark span { color: var(--gold-deep); }
+  .masthead h1 {
+    font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 4.6vw, 38px);
+    line-height: 1.08; letter-spacing: -0.02em; margin: 14px 0 0; text-wrap: balance;
+  }
+  .masthead p {
+    color: var(--ink-soft); margin: 8px 0 0; max-width: 78ch;
+    font-size: 15.5px; text-wrap: pretty;
+  }
+
+  /* ---------- two columns ---------- */
+  .columns {
+    display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: auto auto auto;
+    column-gap: 28px; row-gap: 26px; align-items: start;
+  }
+  .g-head-msp  { grid-column: 1; grid-row: 1; }
+  .g-inputs    { grid-column: 1; grid-row: 2; }
+  .g-boxes     { grid-column: 1; grid-row: 3; }
+  .g-head-cust { grid-column: 2; grid-row: 1; }
+  .g-ledger    { grid-column: 2; grid-row: 2; }
+  .g-invoiced  { grid-column: 2; grid-row: 3; }
+  @media (max-width: 760px) {
+    .columns { grid-template-columns: 1fr; grid-template-rows: repeat(6, auto); row-gap: 22px; }
+    .g-head-msp  { grid-column: 1; grid-row: 1; }
+    .g-inputs    { grid-column: 1; grid-row: 2; }
+    .g-boxes     { grid-column: 1; grid-row: 3; }
+    .g-head-cust { grid-column: 1; grid-row: 4; margin-top: 8px; }
+    .g-ledger    { grid-column: 1; grid-row: 5; }
+    .g-invoiced  { grid-column: 1; grid-row: 6; }
+  }
+
+  .col-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    border-bottom: 2px solid var(--ink); padding-bottom: 8px;
+  }
+  .col-head h2 {
+    font-family: Archivo, sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: 0.16em; text-transform: uppercase; margin: 0;
+  }
+  .col-head .side { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.04em; }
+
+  /* ---------- questions ---------- */
+  .questions { display: flex; flex-direction: column; gap: 22px; }
+  .g-ledger { display: flex; flex-direction: column; gap: 20px; }
+  .q { display: grid; gap: 9px; }
+  .q-top { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+  .q label { font-weight: 500; font-size: 14.5px; }
+  .q .hint { display: block; color: var(--ink-faint); font-size: 12.5px; font-weight: 400; margin-top: 2px; }
+  .q-value {
+    font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px;
+    font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap;
+  }
+  input[type="range"] { width: 100%; accent-color: var(--gold-deep); height: 22px; margin: 0; }
+  input[type="range"]:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---------- MSP result boxes ---------- */
+  .boxes { display: grid; gap: 14px; }
+  .box { padding: 22px 24px 20px; }
+  .box .box-label {
+    font-family: Archivo, sans-serif; font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.17em; text-transform: uppercase; margin: 0 0 10px;
+  }
+  .box .box-figure {
+    font-family: Archivo, sans-serif; font-weight: 700;
+    font-size: clamp(38px, 7.6vw, 58px); line-height: 0.95; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums; margin: 0;
+  }
+  .box .box-foot { margin: 12px 0 0; font-size: 13px; font-variant-numeric: tabular-nums; }
+
+  .box-revenue { background: var(--navy); color: var(--navy-text); }
+  .box-revenue .box-label { color: var(--gold); }
+  .box-revenue .box-foot { color: #B9C2CC; }
+  :root[data-theme="dark"] .box-revenue, :root:not([data-theme="light"]) .box-revenue { border: 1px solid var(--line-strong); }
+
+  .box-profit { background: var(--gold); color: #1F2D3A; }
+  .box-profit .box-label { color: #7A5312; }
+  .box-profit .box-foot { color: #4A3A22; }
+
+  /* ---------- customer box ---------- */
+  .box-invoiced {
+    background: var(--surface); border: 2px solid var(--gold); padding: 20px 22px;
+  }
+  .box-invoiced .box-label { color: var(--gold-deep); }
+  .box-invoiced .box-figure {
+    font-size: clamp(27px, 4.6vw, 34px); color: var(--ink);
+  }
+  .box-invoiced .box-foot { color: var(--ink-soft); }
+
+  /* ---------- customer breakdown ---------- */
+  .ledger { border-top: 1px solid var(--line); }
+  .ledger-row {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px;
+  }
+  .ledger-row dt { color: var(--ink-soft); margin: 0; }
+  .ledger-row dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
+  .ledger-row.total dt, .ledger-row.total dd { font-weight: 600; color: var(--ink); }
+  .ledger-row.total { border-bottom: none; }
+  dl { margin: 0; }
+
+  /* ---------- assumptions + notes ---------- */
+  .notes { margin-top: 36px; border-top: 1px solid var(--line-strong); padding-top: 22px; }
+  .rate-box {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    background: var(--surface-sunk); border: 1px solid var(--line);
+    padding: 16px 18px; max-width: 420px;
+  }
+  .rate-box label { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .rate-box input[type="number"] {
+    font: inherit; font-weight: 600; font-variant-numeric: tabular-nums;
+    padding: 7px 10px; width: 110px; text-align: right;
+    border: 1px solid var(--line-strong); background: var(--surface);
+    color: var(--ink); border-radius: 0;
+  }
+  .rate-box input[type="number"]:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .notes h3 {
+    font-family: Archivo, sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 12px; color: var(--ink);
+  }
+  .notes ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 13.5px; }
+  .notes li { margin-bottom: 5px; }
+  .notes li b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  details.adjust { margin-top: 20px; }
+  details.adjust summary {
+    font-size: 13px; color: var(--gold-deep); cursor: pointer; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px; list-style: none;
+  }
+  details.adjust summary::-webkit-details-marker { display: none; }
+  details.adjust summary::before { content: "+"; font-family: Archivo, sans-serif; font-weight: 700; }
+  details.adjust[open] summary::before { content: "–"; }
+  details.adjust summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .adjust-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px; margin-top: 16px; background: var(--surface-sunk);
+    border: 1px solid var(--line); padding: 18px;
+  }
+  .adjust-grid .f { display: grid; gap: 5px; }
+  .adjust-grid label { font-size: 12.5px; color: var(--ink-soft); }
+  .adjust-grid input[type="number"] {
+    font: inherit; font-variant-numeric: tabular-nums; padding: 7px 9px;
+    border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+    border-radius: 0; width: 100%;
+  }
+  .adjust-grid input[type="number"]:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+  .fineprint { margin-top: 26px; font-size: 12.5px; color: var(--ink-faint); max-width: 70ch; }
+</style>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <p class="wordmark">KHASH<span>MERE</span></p>
+    <h1>What's the ROI of an AI workflow practice?</h1>
+    <p>Use this calculator to see potential revenue of developing an AI workflow practice.</p>
+  </header>
+
+  <div class="columns">
+
+    <!-- ---------- row 1: column heads ---------- -->
+    <div class="col-head g-head-msp">
+      <h2>MSP</h2>
+      <span class="side">Your side of the deal</span>
+    </div>
+    <div class="col-head g-head-cust">
+      <h2>Customer</h2>
+      <span class="side">Per customer</span>
+    </div>
+
+    <!-- ---------- row 2: questions | detail ---------- -->
+    <div class="g-inputs">
+      <div class="questions">
+        <div class="q">
+          <div class="q-top">
+            <label for="customers">Qualified customers
+              <span class="hint">$20M+ revenue, in your base today</span>
+            </label>
+            <output class="q-value" id="customersOut" for="customers">10</output>
+          </div>
+          <input type="range" id="customers" min="1" max="100" step="1" value="10">
+        </div>
+
+        <div class="q">
+          <div class="q-top">
+            <label for="workflows">Workflows per customer
+              <span class="hint">Built and then kept running, 1–50</span>
+            </label>
+            <output class="q-value" id="workflowsOut" for="workflows">5</output>
+          </div>
+          <input type="range" id="workflows" min="1" max="50" step="1" value="5">
+        </div>
+
+        <div class="q">
+          <div class="q-top">
+            <label for="margin">Mark-up on Khashmere hours
+              <span class="hint">Use the margin you typically upcharge on services — you bill <b id="khSell">$260</b>/hr for an hour Khashmere delivers</span>
+            </label>
+            <output class="q-value" id="marginOut" for="margin">30%</output>
+          </div>
+          <input type="range" id="margin" min="0" max="80" step="5" value="30">
+        </div>
+      </div>
+    </div>
+
+    <div class="g-ledger">
+      <dl class="ledger">
+        <div class="ledger-row">
+          <dt>Build, one-time</dt>
+          <dd id="ledgerBuild">$62,000</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Subscription, per month (MRR)</dt>
+          <dd id="ledgerSubMo">$6,200</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Subscription × 12 months</dt>
+          <dd id="ledgerSubYr">$74,400</dd>
+        </div>
+        <div class="ledger-row total">
+          <dt>Year 1</dt>
+          <dd id="ledgerTotal">$136,400</dd>
+        </div>
+      </dl>
+
+      <dl class="ledger">
+        <div class="ledger-row">
+          <dt>Khashmere hours, year 1</dt>
+          <dd id="ledgerKhHours">440 hrs</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Your own staff hours, year 1</dt>
+          <dd id="ledgerMspHours">110 hrs</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Blended rate to the customer</dt>
+          <dd id="ledgerBlended">$248 / hr</dd>
+        </div>
+        <div class="ledger-row total">
+          <dt>Ongoing, from year 2</dt>
+          <dd id="ledgerOngoing">$74,400 / yr</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- ---------- row 3: the boxes, tops aligned ---------- -->
+    <div class="g-boxes boxes">
+      <div class="box box-revenue">
+          <p class="box-label">Revenue — year 1</p>
+          <p class="box-figure" id="revenue">$1,364,000</p>
+          <p class="box-foot" id="revenueFoot">Across 50 workflows · $744,000 of it recurring (ARR)</p>
+        </div>
+        <div class="box box-profit">
+          <p class="box-label">Gross profit — year 1</p>
+          <p class="box-figure" id="profit">$484,000</p>
+          <p class="box-foot" id="profitFoot">$22,000 a month recurring by month 12</p>
+        </div>
+      </div>
+
+      <div class="g-invoiced">
+        <div class="box box-invoiced">
+          <p class="box-label">Invoiced amount</p>
+          <p class="box-figure" id="invoiced">$136,400</p>
+          <p class="box-foot" id="invoicedFoot">Year 1, for 5 workflows</p>
+        </div>
+      </div>
+  </div>
+
+  <section class="notes">
+    <div class="rate-box">
+      <label for="mspRate">Your own staff rate, $/hr</label>
+      <input type="number" id="mspRate" value="200" min="1" max="2000" step="10">
+    </div>
+  </section>
+</div>
+
+<script>
+  var money = function (n) {
+    return "$" + Math.round(n).toLocaleString("en-CA");
+  };
+  var el = function (id) { return document.getElementById(id); };
+
+  // Fixed model assumptions
+  var KH_RATE = 200;   // Khashmere invoices the MSP, $/hr
+  var KH_SHARE = 0.80; // share of hours Khashmere delivers
+  var SUB_HRS = 5;     // subscription hrs per workflow per month
+  var CONS_HRS = 50;   // consulting hrs per workflow, one-time
+
+  var inputs = ["customers", "workflows", "margin", "mspRate"];
+
+  function calc() {
+    var customers = +el("customers").value;
+    var workflows = +el("workflows").value;
+    var markupPct = +el("margin").value;
+    var mspRate = +el("mspRate").value || 0;
+    var khRate = KH_RATE;
+    var khShare = KH_SHARE;
+    var subHrs = SUB_HRS;
+    var consHrs = CONS_HRS;
+
+    var markup = markupPct / 100;
+
+    // Two pools. Khashmere's hours are bought at khRate and billed on with the
+    // mark-up; the MSP's own hours are billed at their standard rate.
+    var khSell = khRate * (1 + markup);
+
+    // Hours per workflow, split by who delivers them
+    var khConsHrs = consHrs * khShare;
+    var mspConsHrs = consHrs - khConsHrs;
+    var khSubHrsMo = subHrs * khShare;
+    var mspSubHrsMo = subHrs - khSubHrsMo;
+
+    var buildPerWf = khConsHrs * khSell + mspConsHrs * mspRate;
+    var subPerWfMo = khSubHrsMo * khSell + mspSubHrsMo * mspRate;
+
+    // Per customer
+    var buildPerCust = buildPerWf * workflows;
+    var subPerCustMo = subPerWfMo * workflows;
+    var subPerCustYr = subPerCustMo * 12;
+    var invoiced = buildPerCust + subPerCustYr;
+
+    var khHoursPerCust = workflows * (khConsHrs + khSubHrsMo * 12);
+    var mspHoursPerCust = workflows * (mspConsHrs + mspSubHrsMo * 12);
+    var hoursPerCust = khHoursPerCust + mspHoursPerCust;
+    var blendedRate = hoursPerCust ? invoiced / hoursPerCust : 0;
+
+    // Across the book — gross profit is the invoice less what Khashmere is owed
+    var revenue = invoiced * customers;
+    var recurringYr = subPerCustYr * customers;
+    var khCost = khHoursPerCust * khRate * customers;
+    var profit = revenue - khCost;
+
+    var khSubHoursMoPerCust = workflows * khSubHrsMo;
+    var recurringProfitMo = (subPerCustMo - khSubHoursMoPerCust * khRate) * customers;
+    var totalWorkflows = customers * workflows;
+
+    // MSP column
+    el("customersOut").textContent = customers;
+    el("workflowsOut").textContent = workflows;
+    el("marginOut").textContent = markupPct + "%";
+    el("khSell").textContent = money(khSell);
+
+    el("revenue").textContent = money(revenue);
+    el("revenueFoot").textContent = "Across " + totalWorkflows.toLocaleString("en-CA") +
+      (totalWorkflows === 1 ? " workflow · " : " workflows · ") + money(recurringYr) + " of it recurring (ARR)";
+
+    el("profit").textContent = money(profit);
+    el("profitFoot").textContent = money(recurringProfitMo) + " a month recurring by month 12";
+
+    // Customer column
+    el("invoiced").textContent = money(invoiced);
+    el("invoicedFoot").textContent = "Year 1, for " + workflows + (workflows === 1 ? " workflow" : " workflows");
+    el("ledgerBuild").textContent = money(buildPerCust);
+    el("ledgerSubMo").textContent = money(subPerCustMo);
+    el("ledgerSubYr").textContent = money(subPerCustYr);
+    el("ledgerTotal").textContent = money(invoiced);
+    el("ledgerKhHours").textContent = Math.round(khHoursPerCust).toLocaleString("en-CA") + " hrs";
+    el("ledgerMspHours").textContent = Math.round(mspHoursPerCust).toLocaleString("en-CA") + " hrs";
+    el("ledgerBlended").textContent = money(blendedRate) + " / hr";
+    el("ledgerOngoing").textContent = money(subPerCustYr) + " / yr";
+  }
+
+  inputs.forEach(function (id) {
+    el(id).addEventListener("input", calc);
+  });
+  calc();
+</script>
+</body>
+</html>
