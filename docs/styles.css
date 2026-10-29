@@ -223,7 +223,7 @@ body.menu-open {
 /* Hero Content */
 .hero-content {
   text-align: left;
-  max-width: 520px;
+  max-width: 580px;
   width: 100%;
 }
 
@@ -258,7 +258,7 @@ body.menu-open {
   color: var(--warm-cream);
   opacity: 0.75;
   margin-bottom: 36px;
-  max-width: 480px;
+  max-width: 560px;
 }
 
 .hero-sub em {
@@ -284,7 +284,7 @@ body.menu-open {
   color: var(--warm-cream);
   opacity: 0.75;
   margin-bottom: 36px;
-  max-width: 480px;
+  max-width: 560px;
 }
 
 .cta.hero-cta {
