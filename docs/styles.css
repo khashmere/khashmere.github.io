@@ -242,12 +242,13 @@ body.menu-open {
   font-weight: 400;
   line-height: 1.35;
   margin-bottom: 28px;
+  color: rgba(240, 236, 232, 0.55);
 }
 
 .headline em {
   font-style: italic;
   color: var(--warm-gold);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .hero-sub {
