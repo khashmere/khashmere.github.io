@@ -871,14 +871,12 @@ a:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-/* Anchor positions echo the hero SVG's asymmetric 5-node arrangement,
-   horizontally shifted so the cluster has equal padding on left and right
-   sides of the constellation container. */
-.approach-step--1 { left: 23%; top: 11.1%;  }
-.approach-step--2 { left: 78%; top: 20.8%;  }
-.approach-step--3 { left: 52%; top: 55.6%;  }
-.approach-step--4 { left: 80%; top: 86.1%;  }
-.approach-step--5 { left: 20%; top: 80.6%;  }
+/* Anchor positions match the SVG waypoints (left% = x/1200, top% = y/720),
+   a descending zigzag across the constellation container. */
+.approach-step--1 { left: 23%; top: 13.3%; }
+.approach-step--2 { left: 77%; top: 27.8%; }
+.approach-step--3 { left: 30%; top: 65.3%; }
+.approach-step--4 { left: 75%; top: 83.3%; }
 
 .approach-step-dot {
   position: absolute;
