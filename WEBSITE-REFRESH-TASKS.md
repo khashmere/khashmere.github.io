@@ -29,9 +29,15 @@ Note: `/Users/linhphan/Downloads/khashmere-partner-calculator.html` is the OLDER
 - [ ] Add Khashmere's cost so it shows **net ROI**: investment (subscription + setup for the matching tier) vs. revenue. Mark's example: ~$15–16K/yr Khashmere cost vs. $110K year-1 revenue per customer.
 - [ ] As the workflows slider moves, the matching pricing tier (Basic / Plus / Enterprise) and its fee should flip automatically. **Open question:** tiers are priced per MSP by total workflows (Basic 2, Plus 4), but the slider is workflows *per customer* — decide whether the tier keys off total workflows (customers × workflows) or per customer.
 
-### 6. Calculator as a real page
-- [ ] Move it to `docs/calculator.html` with the site nav/footer and DM Sans (it currently uses Archivo + IBM Plex and has no nav). Keep `docs/overview/` copy or redirect it.
-- [ ] Add **CALCULATOR** to the top nav on index, pricing and contact, next to Pricing.
+### 6. Calculator placement — DECIDED (Nov 1)
+Previewed 3 looks embedded below the homepage hero. **Decision: Option C — dark blend** (calculator re-themed to the navy so it reads as native to the page), embedded in a `<section id="calculator">` just below the hero, with a **"Calculator" nav link that scrolls to it** (beside Pricing). Embed via `<iframe>` to keep one source-of-truth file. Nav link on index (`#calculator`) + pricing/contact (`index.html#calculator`).
+- [ ] Implement the dark-blend embed + nav link (after task 6b).
+
+### 6b. Simplify + rebrand the calculator for the web (NEW — separate task)
+The current calculator is dense and off-brand (Archivo + IBM Plex fonts; the brand is **DM Sans only**). Before embedding it needs its own pass:
+- [ ] Switch fonts to **DM Sans**; align to brand palette (warm-cream / deep-navy / warm-gold) and dark-blend theme per the Option C decision.
+- [ ] **Simplify** — it's too heavy for a homepage embed. Trim inputs/notes to the essentials a visitor needs; the full detailed version can stay as the standalone `docs/overview/` tool.
+- [ ] Keep warm, human, teach-first tone (per `khashmere-brand`); avoid the spec-sheet feel.
 
 ## Phase 3 — pricing page
 
