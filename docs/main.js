@@ -103,3 +103,72 @@ inlineCopyButtons.forEach(btn => {
   });
 });
 
+// Working with Khashmere — partnership calculator (homepage only)
+// Revenue mirrors docs/overview/khashmere-partner-calculator.html.
+// Cost = setup + subscription + billable build hours (pending Mark's final numbers).
+(function () {
+  const customersEl = document.getElementById('customers');
+  const workflowsEl = document.getElementById('workflows');
+  if (!customersEl || !workflowsEl) return; // section not on this page
+
+  const KH_RATE = 200;   // Khashmere's rate to the MSP, $/hr
+  const KH_SHARE = 0.80; // share of hours Khashmere delivers
+  const SUB_HRS = 5;     // run hrs per workflow per month
+  const CONS_HRS = 50;   // build hrs per workflow, one-time
+  const MARKUP = 0.30;   // MSP's resale markup on Khashmere hours
+  const MSP_RATE = 200;  // MSP's own staff rate, $/hr
+
+  // Khashmere pricing tiers (docs/pricing.html), keyed off workflows per customer.
+  const tierFor = (workflows) =>
+    workflows <= 2
+      ? { name: 'Basic plan', mo: 799, setup: 1799 }
+      : { name: 'Plus plan', mo: 999, setup: 2499 };
+
+  const money = (n) => '$' + Math.round(n).toLocaleString('en-CA');
+  const el = (id) => document.getElementById(id);
+
+  const calc = () => {
+    const customers = +customersEl.value;
+    const workflows = +workflowsEl.value;
+
+    // Revenue the MSP bills its customer
+    const khSell = KH_RATE * (1 + MARKUP);
+    const khConsHrs = CONS_HRS * KH_SHARE, mspConsHrs = CONS_HRS - khConsHrs;
+    const khSubHrsMo = SUB_HRS * KH_SHARE, mspSubHrsMo = SUB_HRS - khSubHrsMo;
+    const buildPerWf = khConsHrs * khSell + mspConsHrs * MSP_RATE;
+    const subPerWfMo = khSubHrsMo * khSell + mspSubHrsMo * MSP_RATE;
+    const invoicedPerCust = buildPerWf * workflows + subPerWfMo * workflows * 12;
+    const revenue = invoicedPerCust * customers;
+
+    // What the MSP pays Khashmere
+    const tier = tierFor(workflows);
+    const setupTotal = tier.setup * customers;
+    const subTotal = tier.mo * 12 * customers;
+    const buildHrs = workflows * khConsHrs; // Khashmere's build hrs per customer
+    const buildTotal = buildHrs * KH_RATE * customers;
+    const khTotal = setupTotal + subTotal + buildTotal;
+
+    const profit = revenue - khTotal;
+    const margin = revenue ? Math.round((profit / revenue) * 100) : 0;
+
+    el('customersOut').textContent = customers;
+    el('workflowsOut').textContent = workflows;
+    el('revenue').textContent = money(revenue);
+    el('profit').textContent = money(profit);
+    el('margin').textContent = margin + '% margin';
+    el('planChip').textContent = tier.name;
+    el('planSub').textContent = 'per customer · ' + money(tier.mo) + '/mo + ' + money(tier.setup) + ' setup';
+    el('bdSetup').textContent = money(setupTotal);
+    el('bdSub').textContent = money(subTotal);
+    el('bdBuildLabel').textContent = 'Build — ' + (buildHrs * customers).toLocaleString('en-CA') + ' hrs';
+    el('bdBuild').textContent = money(buildTotal);
+    el('bdTotal').textContent = money(khTotal);
+    el('bdPerCust').textContent = money(khTotal / customers) + ' per customer × ' +
+      customers + (customers === 1 ? ' customer.' : ' customers.');
+  };
+
+  customersEl.addEventListener('input', calc);
+  workflowsEl.addEventListener('input', calc);
+  calc();
+})();
+

@@ -1,0 +1,178 @@
+/* ===========================================================
+   Case study styles — loaded on BOTH index.html (teaser card)
+   and case-study.html (full story). Builds on styles.css tokens.
+   =========================================================== */
+
+.cs-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  opacity: 0.8;
+  margin: 0 0 18px;
+}
+
+/* shared metric figures (card + detail strip) */
+.m-num {
+  display: block;
+  font-size: 34px;
+  font-weight: 500;
+  color: var(--warm-gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.m-label { display: block; font-size: 13px; color: var(--warm-cream); opacity: 0.7; margin-top: 8px; }
+
+/* ===========================================================
+   Homepage featured card (teaser → links to case-study.html)
+   =========================================================== */
+.home-case-section {
+  padding: 80px 40px;
+  scroll-margin-top: 80px;
+  background: #24323f; /* subtly lifted flat band — separates from the gradient hero */
+  border-top: 1px solid rgba(240, 236, 232, 0.08);
+  border-bottom: 1px solid rgba(240, 236, 232, 0.08);
+}
+.home-case-inner { max-width: 1080px; margin: 0 auto; }
+.home-case-head { margin-bottom: 28px; }
+.home-case-title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--warm-cream);
+  margin: 0;
+}
+.home-case-title em { font-style: italic; color: var(--warm-gold); }
+
+.cs-card {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  border: 1px solid rgba(240, 236, 232, 0.14);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(240, 236, 232, 0.03);
+  text-decoration: none;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.cs-card:hover { border-color: var(--warm-gold); transform: translateY(-2px); }
+
+.cs-card-body { padding: 40px 42px; display: flex; flex-direction: column; justify-content: center; }
+.cs-card-title { font-size: 26px; font-weight: 400; line-height: 1.35; color: var(--warm-cream); margin: 0 0 16px; }
+.cs-card-title em { font-style: italic; color: var(--warm-gold); }
+.cs-card-blurb { font-size: 15px; line-height: 1.7; color: var(--warm-cream); opacity: 0.72; margin: 0 0 24px; }
+.cs-more { font-size: 13px; letter-spacing: 1px; color: var(--warm-gold); }
+
+.cs-card-metrics {
+  background: var(--deep-navy);
+  border-left: 1px solid rgba(240, 236, 232, 0.1);
+  padding: 40px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 26px;
+}
+
+/* ===========================================================
+   Detail page (case-study.html)
+   =========================================================== */
+.case-main { max-width: 900px; margin: 0 auto; padding: 72px 40px 8px; }
+
+.case-title {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--warm-cream);
+  margin: 0 0 16px;
+  max-width: 20ch;
+}
+.case-title em { font-style: italic; color: var(--warm-gold); }
+
+.case-summary { font-size: 18px; line-height: 1.7; color: var(--warm-cream); opacity: 0.8; max-width: 62ch; margin: 0 0 8px; }
+/* key facts (client / built on) */
+.case-facts { display: flex; flex-wrap: wrap; gap: 36px; margin: 24px 0 0; }
+.case-fact { margin: 0; }
+.case-fact dt { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gold); opacity: 0.85; margin: 0 0 6px; }
+.case-fact dd { font-size: 15px; color: var(--warm-cream); opacity: 0.85; margin: 0; }
+
+.case-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 44px 0 8px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(240, 236, 232, 0.14);
+  border-bottom: 1px solid rgba(240, 236, 232, 0.14);
+}
+
+.case-block { border-left: 2px solid var(--warm-gold); padding-left: 30px; margin-top: 44px; max-width: 70ch; }
+.case-block-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gold); opacity: 0.85; margin: 0 0 12px; }
+.case-block-title { font-size: 22px; font-weight: 400; line-height: 1.4; color: var(--warm-cream); margin: 0 0 12px; }
+.case-block-title em { font-style: italic; color: var(--warm-gold); }
+.case-block-body { font-size: 15px; line-height: 1.75; color: var(--warm-cream); opacity: 0.75; margin: 0 0 14px; }
+.case-block-body:last-child { margin-bottom: 0; }
+.case-block-body em { font-style: italic; color: var(--warm-gold); opacity: 1; }
+
+/* before / after impact grid */
+.case-impact { margin-top: 64px; }
+.case-impact-title { font-size: 26px; font-weight: 400; line-height: 1.3; color: var(--warm-cream); margin: 8px 0 0; }
+.case-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 32px 0;
+}
+.impact-item {
+  border-top: 1px solid rgba(240, 236, 232, 0.14);
+  padding-top: 18px;
+}
+.impact-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gold); opacity: 0.85; margin: 0 0 14px; }
+.impact-before { font-size: 14px; line-height: 1.6; color: var(--warm-cream); opacity: 0.5; margin: 0 0 6px; }
+.impact-after { font-size: 14px; line-height: 1.6; color: var(--warm-cream); opacity: 0.85; margin: 0; }
+.impact-after em { font-style: italic; color: var(--warm-gold); opacity: 1; }
+.case-impact-close { font-size: 15px; line-height: 1.75; color: var(--warm-cream); opacity: 0.75; max-width: 70ch; margin: 0; }
+
+/* closing CTA — scoped to .case-main so it can't override the shared
+   .cta-section rules in pricing.css (both load together on index.html).
+   case-study.html doesn't load pricing.css, so it needs its own copy. */
+.case-main .cta-section {
+  text-align: center;
+  padding: 64px 48px;
+  background: linear-gradient(160deg, #3d4f61 0%, #2a3a4a 50%, #1f2d3a 100%);
+  border: 1px solid rgba(240, 236, 232, 0.1);
+  border-radius: 16px;
+  margin: 72px 0 64px;
+}
+.case-main .cta-headline {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--warm-cream);
+  margin: 0 0 14px;
+}
+.case-main .cta-headline em { font-style: italic; color: var(--warm-gold); }
+.case-main .cta-subtext {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--warm-cream);
+  opacity: 0.72;
+  max-width: 56ch;
+  margin: 0 auto 32px;
+}
+.case-main .cta-subtext em { font-style: italic; color: var(--warm-gold); opacity: 1; }
+
+@media (max-width: 760px) {
+  .home-case-section { padding: 60px 24px; }
+  .cs-card { grid-template-columns: 1fr; }
+  .cs-card-body { padding: 32px 26px; }
+  .cs-card-metrics { padding: 28px 26px; flex-direction: row; flex-wrap: wrap; gap: 24px 36px; }
+  .cs-card-title { font-size: 23px; }
+  .home-case-title { font-size: 24px; }
+  .case-main { padding: 48px 24px 8px; }
+  .case-title { font-size: 28px; }
+  .case-metrics { gap: 28px; }
+  .case-facts { gap: 24px; }
+  .case-impact-grid { grid-template-columns: 1fr; gap: 0; }
+  .impact-item { margin-top: 20px; }
+  .case-main .cta-section { padding: 48px 24px; }
+  .case-main .cta-headline { font-size: 24px; }
+}

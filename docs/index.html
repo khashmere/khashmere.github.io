@@ -10,6 +10,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/khashmere-icon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pricing.css">
+  <link rel="stylesheet" href="case-study.css">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZ311Q82G"></script>
@@ -27,6 +28,8 @@
       <span>KHASHMERE</span>
     </a>
     <div class="nav-links">
+      <a href="#calculator">REVENUE CALCULATOR</a>
+      <a href="#case-study">CASE STUDY</a>
       <a href="pricing.html">PRICING</a>
       <a href="contact.html">CONTACT US</a>
     </div>
@@ -50,6 +53,8 @@
       </button>
     </div>
     <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+      <a href="#calculator" class="mobile-menu-link">Revenue Calculator</a>
+      <a href="#case-study" class="mobile-menu-link">Case Study</a>
       <a href="pricing.html" class="mobile-menu-link">Pricing</a>
       <a href="contact.html" class="mobile-menu-link">Contact Us</a>
     </nav>
@@ -63,7 +68,7 @@
           <em>Elite, Forward Deployed Engineers</em> for MSPs
         </h1>
         <p class="hero-sub">
-          We partner with MSPs to capitalize on AI &amp; data — strategy, orchestration and team upskilling — so you stay at the <em>centre of the customer relationship</em> and <em>identify and execute on revenue-generating AI opportunities.</em>
+          We partner with MSPs to capitalize on AI &amp; data — strategy, orchestration and team upskilling — so you stay at the <em>centre of the customer relationship</em> and <em>identify and execute on revenue-generating AI & data opportunities.</em>
         </p>
         <p class="hero-who-eyebrow">Who is Khashmere</p>
         <p class="hero-who">
@@ -129,6 +134,102 @@
     </div>
   </main>
 
+  <!-- Working with Khashmere: interactive partnership calculator -->
+  <section class="calc-section" id="calculator" aria-label="Working with Khashmere">
+    <div class="calc-inner">
+      <p class="calc-eyebrow">YOUR REVENUE POTENTIAL</p>
+      <h2 class="calc-headline">See the <em>revenue you could add</em> with Khashmere.</h2>
+      <p class="calc-sub">See the revenue of developing an AI &amp; data workflow practice with Khashmere. You own the client relationship and bill your customer; we&rsquo;re the forward-deployed team that builds and runs the work.</p>
+
+      <div class="calc-grid">
+        <form class="calc-controls" aria-label="Calculator inputs">
+          <div class="control">
+            <div class="control-head">
+              <label class="control-label" for="customers">Customers</label>
+              <output class="control-value" id="customersOut" for="customers">10</output>
+            </div>
+            <p class="control-hint">Clients in your base you&rsquo;d roll this out to.</p>
+            <input type="range" id="customers" min="1" max="50" value="10" step="1">
+          </div>
+
+          <div class="control">
+            <div class="control-head">
+              <label class="control-label" for="workflows">Workflows / customer</label>
+              <output class="control-value" id="workflowsOut" for="workflows">4</output>
+            </div>
+            <p class="control-hint">AI &amp; data workflows built and kept running per client.</p>
+            <input type="range" id="workflows" min="1" max="4" value="4" step="1">
+          </div>
+        </form>
+
+        <div class="calc-panels">
+          <div class="calc-panel calc-panel--you">
+            <p class="calc-panel-role">YOU — THE MSP</p>
+            <p class="calc-panel-who">You own the client relationship and the revenue.</p>
+            <div class="calc-stat">
+              <span class="calc-stat-num" id="revenue">$1,091,200</span>
+              <span class="calc-stat-label">Year-1 revenue you bill your customers</span>
+            </div>
+            <div class="calc-stat">
+              <span class="calc-stat-num calc-stat-num--cream" id="profit">$626,330</span>
+              <span class="calc-stat-label">Your net, after paying Khashmere</span>
+              <span class="calc-stat-tag" id="margin">57% margin</span>
+            </div>
+          </div>
+
+          <div class="calc-panel calc-panel--kh">
+            <p class="calc-panel-role">KHASHMERE</p>
+            <p class="calc-panel-who">Your forward-deployed team — we build &amp; run the workflows in your client&rsquo;s environment.</p>
+            <span class="calc-plan-chip" id="planChip">Plus plan</span>
+            <p class="calc-plan-sub" id="planSub">per customer · $999/mo + $2,499 setup</p>
+
+            <div class="calc-breakdown" aria-label="What you pay Khashmere">
+              <div class="calc-breakdown-row">
+                <span>Setup (one-time)</span><span id="bdSetup">$24,990</span>
+              </div>
+              <div class="calc-breakdown-row">
+                <span>Subscription (12 mo)</span><span id="bdSub">$119,880</span>
+              </div>
+              <div class="calc-breakdown-row">
+                <span id="bdBuildLabel">Build — 1,600 hrs</span><span id="bdBuild">$320,000</span>
+              </div>
+              <div class="calc-breakdown-row total">
+                <span>You pay Khashmere, year 1</span><span id="bdTotal">$464,870</span>
+              </div>
+              <p class="calc-breakdown-note" id="bdPerCust">$46,487 per customer × 10 customers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-foot">
+        <p class="calc-note">Setup and subscription are fixed per customer; the build hours grow with each workflow &mdash; so the more workflows a customer runs, the better your margin. A simple model: monthly subscription + setup + the project hours to build each workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured case study (teaser card → full story) -->
+  <section class="home-case-section" id="case-study" aria-label="Case study">
+    <div class="home-case-inner">
+      <div class="home-case-head">
+        <p class="cs-eyebrow">CASE STUDY</p>
+        <h2 class="home-case-title">Proof, <em>not promises.</em></h2>
+      </div>
+      <a class="cs-card" href="case-study.html">
+        <div class="cs-card-body">
+          <h3 class="cs-card-title">One scheduler. Two systems. <em>One fix that became a revenue line.</em></h3>
+          <p class="cs-card-blurb">A convention centre was typing every event schedule twice. We fixed the data underneath — and the AI that followed became a new revenue line.</p>
+          <span class="cs-more">Read the full story →</span>
+        </div>
+        <div class="cs-card-metrics">
+          <div class="cs-metric"><span class="m-num">100s of hrs</span><span class="m-label">saved, dual entry ended</span></div>
+          <div class="cs-metric"><span class="m-num">60+</span><span class="m-label">tables now in Copilot</span></div>
+          <div class="cs-metric"><span class="m-num">10</span><span class="m-label">priorities sequenced</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- Audience Frame: who this is for -->
   <section class="audience-frame" aria-label="Who Khashmere is for">
     <div class="pain-section-inner">
@@ -145,45 +246,19 @@
 
         <article class="pain-block">
           <h3 class="pain-block-title">Your customers are ready for a strategic AI &amp; data advisor.</h3>
-          <p class="pain-block-desc">The AI conversation and prototypes are already happening inside your customer accounts. They’re trying to figure out what’s worth their time, what is not, and where to begin. The risk is that if you can’t guide that conversation credibly, they will turn to outside advisors.</p>
+          <p class="pain-block-desc">The AI conversation and prototypes are already happening inside your customer accounts. If you can’t guide that conversation credibly, they will turn to outside advisors.</p>
           <p class="pain-block-want-label">WHAT KHASHMERE SOLVES FOR</p>
           <p class="pain-block-want">We help MSPs build the internal data and AI foundation first, so they can create real business outcomes for customers and <em>stay at the center of the relationship.</em></p>
         </article>
 
         <article class="pain-block">
           <h3 class="pain-block-title">Your traditional MSP revenue is flattening. Your margins are getting squeezed.</h3>
-          <p class="pain-block-desc">Your customers expect more, competitors are moving faster, and commodity services are harder to defend. Growth now depends on offering higher-value services that make you more strategic, more profitable, and harder to replace.</p>
+          <p class="pain-block-desc">Your customers expect more, competitors are moving faster, and commodity services are harder to defend. Growth now depends on higher-value services that make you more strategic, profitable, and harder to replace.</p>
           <p class="pain-block-want-label">WHAT KHASHMERE SOLVES FOR</p>
           <p class="pain-block-want">We help MSPs turn AI and data services into new revenue streams — so you can grow account value, protect margins, and <em>compete beyond commodity support.</em></p>
         </article>
 
       </div>
-    </div>
-  </section>
-
-  <!-- The Foundation section -->
-  <section class="trust-section" aria-label="Platforms we build on">
-    <p class="trust-eyebrow">THE FOUNDATION</p>
-    <h2 class="trust-headline">Proven platforms, <em>activated for your clients.</em></h2>
-
-    <div class="trust-tier">
-      <p class="trust-tier-label">We build on</p>
-      <ul class="logo-row">
-        <li class="logo-chip"><img src="assets/microsoft-fabric.png" alt="Microsoft Fabric"></li>
-        <li class="logo-chip"><img src="assets/claude-logo.svg" alt="Claude by Anthropic"></li>
-        <li class="logo-chip"><img src="assets/microsoft-copilot-logo.svg" alt="Microsoft Copilot"></li>
-        <li class="logo-more">and more</li>
-      </ul>
-    </div>
-
-    <div class="trust-tier">
-      <p class="trust-tier-label">We connect to your existing systems</p>
-      <ul class="logo-row">
-        <li class="logo-chip"><img src="assets/bullhorn-logo.svg" alt="Bullhorn"></li>
-        <li class="logo-chip"><img src="assets/momentus-logo.svg" alt="Momentus"></li>
-        <li class="logo-chip"><img src="assets/fhir-logo.png" alt="FHIR healthcare data standard"></li>
-        <li class="logo-more">and many more</li>
-      </ul>
     </div>
   </section>
 
@@ -266,6 +341,32 @@
     </div>
   </section>
 
+  <!-- The Foundation section -->
+  <section class="trust-section" aria-label="Platforms we build on">
+    <p class="trust-eyebrow">THE FOUNDATION</p>
+    <h2 class="trust-headline">Proven platforms, <em>activated for your clients.</em></h2>
+
+    <div class="trust-tier">
+      <p class="trust-tier-label">We build on</p>
+      <ul class="logo-row">
+        <li class="logo-chip"><img src="assets/microsoft-fabric.png" alt="Microsoft Fabric"></li>
+        <li class="logo-chip"><img src="assets/claude-logo.svg" alt="Claude by Anthropic"></li>
+        <li class="logo-chip"><img src="assets/microsoft-copilot-logo.svg" alt="Microsoft Copilot"></li>
+        <li class="logo-more">and more</li>
+      </ul>
+    </div>
+
+    <div class="trust-tier">
+      <p class="trust-tier-label">We connect to your existing systems</p>
+      <ul class="logo-row">
+        <li class="logo-chip"><img src="assets/bullhorn-logo.svg" alt="Bullhorn"></li>
+        <li class="logo-chip"><img src="assets/momentus-logo.svg" alt="Momentus"></li>
+        <li class="logo-chip"><img src="assets/fhir-logo.png" alt="FHIR healthcare data standard"></li>
+        <li class="logo-more">and many more</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Team Section -->
   <section class="team-section" aria-label="Meet the team">
     <p class="trust-eyebrow">WHO YOU'LL WORK WITH</p>
@@ -291,7 +392,7 @@
         </div>
         <h3 class="team-name">Mark Clancy</h3>
         <p class="team-role">Co-founder</p>
-        <p class="team-bio">Mark has 25+ years of data engineering & analytics experience. Before founding <em>IGENO</em>, he worked at both <em>Accenture</em> and <em>TELUS</em>. Much of his work has focused on leveraging data to transform organizational processes - and measure the results. He has an Electrical Engineering degree from the University of Victoria and an MBA from Ivey Business School at Western University. He has also served as an Adjunct Professor at the University of British Columbia.</p>
+        <p class="team-bio">Mark has 25+ years of data engineering & analytics experience. Before founding <em>IGENO</em>, he worked at both <em>Accenture</em> and <em>TELUS</em>. Much of his work has focused on leveraging data to transform organizational processes - and measure the results. He has an Electrical Engineering degree from the University of Victoria and an MBA from Ivey Business School at Western University.</p>
       </div>
 
       <div class="team-card">

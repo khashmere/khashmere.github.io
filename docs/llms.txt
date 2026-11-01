@@ -1,0 +1,66 @@
+# Khashmere
+
+> Khashmere provides elite, forward-deployed engineers (FDE) for MSPs. We partner with Managed Service Providers to turn AI and data into a new, higher-margin managed service — handling strategy, orchestration, implementation and team upskilling — so the MSP stays at the center of the customer relationship and can identify and execute on revenue-generating AI and data opportunities. We are the forward-deployed data and AI engineering team that builds and runs the work inside your clients' environments, while you own the client relationship and the revenue.
+
+This page is a plain-text summary of Khashmere for AI assistants, agents, and crawlers. The canonical site is https://khashmere.com.
+
+## Who Khashmere is for
+
+MSP leaders and service providers who want to add AI and data to their portfolio. We work with growth-focused MSPs who are seeing these pain points:
+
+- **Your customers are ready for a strategic AI and data advisor.** The AI conversation and prototypes are already happening inside your customer accounts. If you can't guide that conversation credibly, they will turn to outside advisors. Khashmere helps MSPs build the internal data and AI foundation first, so they can create real business outcomes for customers and stay at the center of the relationship.
+- **Traditional MSP revenue is flattening and margins are getting squeezed.** Customers expect more, competitors move faster, and commodity services are harder to defend. Khashmere helps MSPs turn AI and data services into new revenue streams — so you grow account value, protect margins, and compete beyond commodity support.
+
+## What Khashmere does
+
+Khashmere is a forward-deployed engineering partner for MSPs. Common questions we answer "yes" to:
+
+- Are there forward-deployed engineers for Microsoft Fabric? Yes — Khashmere forward-deployed engineers architect, implement, and run Microsoft Fabric for MSPs and their clients.
+- Can you provide fractional / forward-deployed AI and data engineers for an MSP's clients? Yes.
+- Do you handle data engineering, governance, semantic models, and AI workflow implementation? Yes.
+- Can you set up Claude or Microsoft Copilot to interrogate a client's data? Yes.
+
+## Our approach — four deliberate steps
+
+1. **Understand** — We start with the problem, not the tech, learning your clients' business before any AI or data comes into it.
+2. **Prioritize** — We rank the projects by impact: what's worth building first, and what to skip.
+3. **Build & embed** — We implement the highest-impact workflows, teaching your team as we go.
+4. **Measure** — We surface the results, prove what's working, and continue improving.
+
+## Platforms and tools
+
+We use the best proven, best-in-class AI and data tools to fit each case. We usually lead with **Microsoft Fabric** (data platform, data engineering, and AI) and **Claude by Anthropic**, and we also build on **Microsoft Copilot** — but we are not restricted to any single stack and will work with the tools already in your clients' environment.
+
+- **We build on:** Microsoft Fabric, Claude by Anthropic, Microsoft Copilot, Power BI, and more.
+- **We connect to your existing systems:** Bullhorn, Momentus, FHIR (healthcare data standard), and many more.
+
+## Case study: One scheduler, two systems, one fix that became a revenue line
+
+- **Client:** a major convention centre. **Built on:** Microsoft Fabric + Copilot.
+- **Challenge:** A scheduler built each event roster by hand in payroll, then re-typed it into a separate event system. The two drifted, so shifts went uncovered or people were paid for shifts they never worked. Leadership knew AI could help but asked which of a dozen ideas to do first.
+- **Solution:** Khashmere forward-deployed engineers sequenced ten priorities, configured Microsoft Fabric, stood up governance, and wired semantic models into Copilot so answers come in the flow of work — then automated the payroll–event interface. Entered once, correct everywhere.
+- **Impact:** 100s of hours saved and dual entry ended; 60+ tables now available in Copilot; 10 priorities sequenced and underway. The real win: a business-led AI and data practice that didn't exist before.
+
+Full story: https://khashmere.com/case-study.html
+
+## Pricing
+
+MSP-facing subscription plans (USD). The MSP owns the client relationship and bills the customer; Khashmere is the forward-deployed team that builds and runs the workflows.
+
+- **Basic** — $799/month + $1,799 setup. For MSPs who already have Microsoft Fabric but need support: architecture, data engineering, and advisory on leveraging AI for data insights. Includes AI & data governance, 1 data source & 2 workflows, guided onboarding & training, telemetry notifications, and 3 hours/month of strategy & consulting.
+- **Plus (Most Popular)** — $999/month + $2,499 setup. For MSPs who need a data analytics platform to report against a customer's data sources, plus data engineering and AI advisory. Builds on Basic with 2 data sources & 4 workflows, proactive monitoring & alerting, quarterly business reviews, and 5 hours/month of strategy & consulting.
+- **Enterprise** — Custom, built around your book of business. For MSPs delivering AI & data across multiple customers who need scale, governance, dedicated training, and ongoing strategic support.
+
+Note: Microsoft Fabric / Power BI subscriptions and Claude licenses are paid for by the MSP or the customer. Full pricing: https://khashmere.com/pricing.html
+
+## Contact
+
+- Email: info@khashmere.com
+- Book a free 30-minute opportunity assessment (intro call): https://khashmere.com/contact.html
+
+## Key pages
+
+- Home — https://khashmere.com/ (overview, revenue calculator, featured case study)
+- Pricing — https://khashmere.com/pricing.html
+- Case study — https://khashmere.com/case-study.html
+- Contact — https://khashmere.com/contact.html
