@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "/Users/linhphan/Documents/Khashmere/khashmere-website/docs", "-p", "3000", "--no-clipboard"],
       "port": 3000
+    },
+    {
+      "name": "Khashmere docs (python)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3001", "--directory", "docs"],
+      "port": 3001
     }
   ]
 }

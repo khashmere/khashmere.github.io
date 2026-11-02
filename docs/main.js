@@ -104,25 +104,21 @@ inlineCopyButtons.forEach(btn => {
 });
 
 // Working with Khashmere — partnership calculator (homepage only)
-// Revenue mirrors docs/overview/khashmere-partner-calculator.html.
-// Cost = setup + subscription + billable build hours (pending Mark's final numbers).
+// Khashmere cost = the plan: setup + 12 months' subscription, per customer.
+// The MSP resells the plan to its customer at a target margin.
 (function () {
   const customersEl = document.getElementById('customers');
   const workflowsEl = document.getElementById('workflows');
   if (!customersEl || !workflowsEl) return; // section not on this page
 
-  const KH_RATE = 200;   // Khashmere's rate to the MSP, $/hr
-  const KH_SHARE = 0.80; // share of hours Khashmere delivers
-  const SUB_HRS = 5;     // run hrs per workflow per month
-  const CONS_HRS = 50;   // build hrs per workflow, one-time
-  const MARKUP = 0.30;   // MSP's resale markup on Khashmere hours
-  const MSP_RATE = 200;  // MSP's own staff rate, $/hr
+  const MARGIN = 0.50; // MSP's gross margin on the resold plan
 
-  // Khashmere pricing tiers (docs/pricing.html), keyed off workflows per customer.
+  // Pricing tiers (docs/pricing.html), keyed off workflows per customer.
+  // Plus covers 4 workflows; beyond that, Plus pricing scales per workflow.
   const tierFor = (workflows) =>
     workflows <= 2
       ? { name: 'Basic plan', mo: 799, setup: 1799 }
-      : { name: 'Plus plan', mo: 999, setup: 2499 };
+      : { name: 'Plus plan', mo: 999 * Math.max(workflows, 4) / 4, setup: 2499 * Math.max(workflows, 4) / 4 };
 
   const money = (n) => '$' + Math.round(n).toLocaleString('en-CA');
   const el = (id) => document.getElementById(id);
@@ -131,22 +127,14 @@ inlineCopyButtons.forEach(btn => {
     const customers = +customersEl.value;
     const workflows = +workflowsEl.value;
 
-    // Revenue the MSP bills its customer
-    const khSell = KH_RATE * (1 + MARKUP);
-    const khConsHrs = CONS_HRS * KH_SHARE, mspConsHrs = CONS_HRS - khConsHrs;
-    const khSubHrsMo = SUB_HRS * KH_SHARE, mspSubHrsMo = SUB_HRS - khSubHrsMo;
-    const buildPerWf = khConsHrs * khSell + mspConsHrs * MSP_RATE;
-    const subPerWfMo = khSubHrsMo * khSell + mspSubHrsMo * MSP_RATE;
-    const invoicedPerCust = buildPerWf * workflows + subPerWfMo * workflows * 12;
-    const revenue = invoicedPerCust * customers;
-
     // What the MSP pays Khashmere
     const tier = tierFor(workflows);
-    const setupTotal = tier.setup * customers;
-    const subTotal = tier.mo * 12 * customers;
-    const buildHrs = workflows * khConsHrs; // Khashmere's build hrs per customer
-    const buildTotal = buildHrs * KH_RATE * customers;
-    const khTotal = setupTotal + subTotal + buildTotal;
+    const khPerCust = tier.setup + tier.mo * 12;
+    const khTotal = khPerCust * customers;
+
+    // What the MSP bills its customer
+    const invoicedPerCust = khPerCust / (1 - MARGIN);
+    const revenue = invoicedPerCust * customers;
 
     const profit = revenue - khTotal;
     const margin = revenue ? Math.round((profit / revenue) * 100) : 0;
@@ -158,13 +146,10 @@ inlineCopyButtons.forEach(btn => {
     el('margin').textContent = margin + '% margin';
     el('planChip').textContent = tier.name;
     el('planSub').textContent = 'per customer · ' + money(tier.mo) + '/mo + ' + money(tier.setup) + ' setup';
-    el('bdSetup').textContent = money(setupTotal);
-    el('bdSub').textContent = money(subTotal);
-    el('bdBuildLabel').textContent = 'Build — ' + (buildHrs * customers).toLocaleString('en-CA') + ' hrs';
-    el('bdBuild').textContent = money(buildTotal);
+    el('custSpend').textContent = money(revenue);
+    el('custSpendLabel').textContent = 'Year-1 spend across ' + customers +
+      (customers === 1 ? ' customer' : ' customers') + ' · ' + money(invoicedPerCust) + ' each';
     el('bdTotal').textContent = money(khTotal);
-    el('bdPerCust').textContent = money(khTotal / customers) + ' per customer × ' +
-      customers + (customers === 1 ? ' customer.' : ' customers.');
   };
 
   customersEl.addEventListener('input', calc);

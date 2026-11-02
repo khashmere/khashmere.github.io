@@ -39,7 +39,7 @@ We use the best proven, best-in-class AI and data tools to fit each case. We usu
 - **Client:** a major convention centre. **Built on:** Microsoft Fabric + Copilot.
 - **Challenge:** A scheduler built each event roster by hand in payroll, then re-typed it into a separate event system. The two drifted, so shifts went uncovered or people were paid for shifts they never worked. Leadership knew AI could help but asked which of a dozen ideas to do first.
 - **Solution:** Khashmere forward-deployed engineers sequenced ten priorities, configured Microsoft Fabric, stood up governance, and wired semantic models into Copilot so answers come in the flow of work — then automated the payroll–event interface. Entered once, correct everywhere.
-- **Impact:** 100s of hours saved and dual entry ended; 60+ tables now available in Copilot; 10 priorities sequenced and underway. The real win: a business-led AI and data practice that didn't exist before.
+- **Impact:** 100s of hours saved and dual entry ended. The real win: a business-led AI and data practice that didn't exist before.
 
 Full story: https://khashmere.com/case-study.html
 
@@ -47,9 +47,9 @@ Full story: https://khashmere.com/case-study.html
 
 MSP-facing subscription plans (USD). The MSP owns the client relationship and bills the customer; Khashmere is the forward-deployed team that builds and runs the workflows.
 
-- **Basic** — $799/month + $1,799 setup. For MSPs who already have Microsoft Fabric but need support: architecture, data engineering, and advisory on leveraging AI for data insights. Includes AI & data governance, 1 data source & 2 workflows, guided onboarding & training, telemetry notifications, and 3 hours/month of strategy & consulting.
-- **Plus (Most Popular)** — $999/month + $2,499 setup. For MSPs who need a data analytics platform to report against a customer's data sources, plus data engineering and AI advisory. Builds on Basic with 2 data sources & 4 workflows, proactive monitoring & alerting, quarterly business reviews, and 5 hours/month of strategy & consulting.
-- **Enterprise** — Custom, built around your book of business. For MSPs delivering AI & data across multiple customers who need scale, governance, dedicated training, and ongoing strategic support.
+- **Basic** — $799/month + $1,799 setup. Start offering AI & data to a customer: Khashmere builds the foundation; the MSP owns the relationship. Includes AI & data governance, Fabric set-up, guided onboarding & training, telemetry notifications, monthly business reviews, and 3 hours/month of strategy & consulting.
+- **Plus (Most Popular)** — $999/month + $2,499 setup. Turn AI & data into a managed service: reporting, data engineering and AI advisory for the MSP's customer. Builds on Basic with Fabric set-up, proactive monitoring & alerting, bi-weekly business reviews, and 5 hours/month of strategy & consulting.
+- **Enterprise** — Custom, built around your book of business. AI & data across the MSP's whole book of customers, with Fabric set-up, dedicated training and support, weekly strategy & business reviews, and strategic support.
 
 Note: Microsoft Fabric / Power BI subscriptions and Claude licenses are paid for by the MSP or the customer. Full pricing: https://khashmere.com/pricing.html
 
