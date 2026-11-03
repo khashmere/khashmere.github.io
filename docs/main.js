@@ -104,21 +104,24 @@ inlineCopyButtons.forEach(btn => {
 });
 
 // Working with Khashmere — partnership calculator (homepage only)
-// Khashmere cost = the plan: setup + 12 months' subscription, per customer.
-// The MSP resells the plan to its customer at a target margin.
+// Khashmere cost per customer = flat subscription (setup + 12 months) +
+// a one-time build of each workflow (~80 hours at the plan's hourly rate).
+// The MSP resells it all to its customer at a target margin.
 (function () {
   const customersEl = document.getElementById('customers');
   const workflowsEl = document.getElementById('workflows');
   if (!customersEl || !workflowsEl) return; // section not on this page
 
   const MARGIN = 0.50; // MSP's gross margin on the resold plan
+  const HOURS_PER_WORKFLOW = 80; // average build effort per workflow
 
-  // Pricing tiers (docs/pricing.html), keyed off workflows per customer.
-  // Plus covers 4 workflows; beyond that, Plus pricing scales per workflow.
+  // Pricing tiers (docs/pricing.html). The subscription is flat — it no longer
+  // scales with workflows; workflows are billed separately as build hours.
+  // Plan is picked by workflow count: Plus kicks in at 4 workflows.
   const tierFor = (workflows) =>
-    workflows <= 2
-      ? { name: 'Basic plan', mo: 799, setup: 1799 }
-      : { name: 'Plus plan', mo: 999 * Math.max(workflows, 4) / 4, setup: 2499 * Math.max(workflows, 4) / 4 };
+    workflows < 4
+      ? { name: 'Basic plan', mo: 1499, setup: 1499, rate: 250 }
+      : { name: 'Plus plan', mo: 2999, setup: 2999, rate: 200 };
 
   const money = (n) => '$' + Math.round(n).toLocaleString('en-CA');
   const el = (id) => document.getElementById(id);
@@ -127,9 +130,12 @@ inlineCopyButtons.forEach(btn => {
     const customers = +customersEl.value;
     const workflows = +workflowsEl.value;
 
-    // What the MSP pays Khashmere
+    // What the MSP pays Khashmere: flat subscription + one-time workflow build
     const tier = tierFor(workflows);
-    const khPerCust = tier.setup + tier.mo * 12;
+    const buildHours = workflows * HOURS_PER_WORKFLOW;
+    const buildFee = buildHours * tier.rate;
+    const subPerCust = tier.setup + tier.mo * 12;
+    const khPerCust = subPerCust + buildFee;
     const khTotal = khPerCust * customers;
 
     // What the MSP bills its customer
@@ -145,7 +151,11 @@ inlineCopyButtons.forEach(btn => {
     el('profit').textContent = money(profit);
     el('margin').textContent = margin + '% margin';
     el('planChip').textContent = tier.name;
-    el('planSub').textContent = 'per customer · ' + money(tier.mo) + '/mo + ' + money(tier.setup) + ' setup';
+    el('planSub').textContent = customers + (customers === 1 ? ' customer · ' : ' customers · ') +
+      workflows + (workflows === 1 ? ' workflow each' : ' workflows each');
+    el('subOut').textContent = money(subPerCust * customers);
+    el('buildSub').textContent = 'Build · ' + HOURS_PER_WORKFLOW + ' hrs/workflow · $' + tier.rate + '/hr';
+    el('buildOut').textContent = money(buildFee * customers);
     el('custSpend').textContent = money(revenue);
     el('custSpendLabel').textContent = 'Year-1 spend across ' + customers +
       (customers === 1 ? ' customer' : ' customers') + ' · ' + money(invoicedPerCust) + ' each';
