@@ -222,13 +222,16 @@ body.menu-open {
 
 /* Hero Content */
 .hero-content {
+  container-type: inline-size;
   text-align: left;
   max-width: 760px;
   width: 100%;
 }
 
 .headline {
-  font-size: clamp(30px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(60px, 6vw, 88px);
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -241,6 +244,20 @@ body.menu-open {
   font-style: italic;
   color: var(--warm-gold);
   font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  /* Sized to the hero column so the line always fills it on a single row */
+  .headline em {
+    display: block;
+    white-space: nowrap;
+    font-size: 6.5cqi;
+  }
+}
+
+.headline-sub {
+  font-size: 0.44em;
+  line-height: 1.12;
 }
 
 .hero-sub {
@@ -453,7 +470,7 @@ body.menu-open {
   }
 
   .headline {
-    font-size: clamp(28px, 7.5vw, 38px);
+    font-size: clamp(56px, 15vw, 76px);
   }
 
 }
