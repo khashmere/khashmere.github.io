@@ -185,7 +185,7 @@
   .home-case-section { padding: 60px 24px; }
   .cs-card { grid-template-columns: 1fr; }
   .cs-card-body { padding: 32px 26px; }
-  .cs-card-metrics { padding: 28px 26px; flex-direction: row; flex-wrap: wrap; gap: 24px 36px; }
+  .cs-card-metrics { padding: 28px 26px; align-items: center; text-align: center; gap: 24px; }
   .cs-card-title { font-size: 23px; }
   .cs-card-title em { white-space: normal; } /* allow wrap on mobile to avoid overflow */
   .home-case-title { font-size: 24px; }
