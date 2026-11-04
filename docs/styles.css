@@ -248,7 +248,7 @@ body.menu-open {
 
 @media (min-width: 640px) {
   /* Sized to the hero column so the line always fills it on a single row */
-  .headline em {
+  .headline-main {
     display: block;
     white-space: nowrap;
     font-size: 6.5cqi;
