@@ -258,6 +258,7 @@ body.menu-open {
 .headline-sub {
   font-size: 0.44em;
   line-height: 1.12;
+  margin-top: 0.5em;
 }
 
 .hero-sub {
@@ -457,10 +458,6 @@ body.menu-open {
 
   .headline {
     margin-bottom: 32px;
-  }
-
-  .headline-sub {
-    margin-top: 10px;
   }
 }
 
