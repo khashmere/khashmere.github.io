@@ -283,16 +283,20 @@ body.menu-open {
 
 .cta.hero-cta {
   width: auto;
-  background: var(--warm-gold);
+  background: #e8b872;
   border: none;
   color: var(--deep-navy);
-  padding: 14px 32px;
+  font-weight: 600;
+  padding: 16px 36px;
   font-size: 13px;
-  transition: background 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .cta.hero-cta:hover {
-  background: #c8a074;
+  background: #f0c47e;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(232, 184, 114, 0.45);
 }
 
 .cta {

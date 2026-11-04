@@ -188,13 +188,18 @@
 }
 
 .pricing-card.featured .card-cta {
-  background: rgba(240, 236, 232, 0.1);
-  border-color: rgba(240, 236, 232, 0.4);
+  background: #e8b872;
+  border-color: #e8b872;
+  color: var(--deep-navy);
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-card.featured .card-cta:hover {
-  background: rgba(240, 236, 232, 0.15);
-  border-color: var(--warm-gold);
+  background: #f0c47e;
+  border-color: #f0c47e;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(232, 184, 114, 0.45);
 }
 
 /* Footnotes */
